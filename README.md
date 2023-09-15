@@ -6,6 +6,12 @@ Online judge system - https://judge.softuni.org/
 ![image](https://user-images.githubusercontent.com/68993494/185683680-bcfefe65-88fb-4192-b0b2-ff9130c39487.png)
 
 ## Table of Contents:
-➡ [Basic Syntax, Conditional Statements and Loops](https://github.com/GeorgiDN/python-fundamentals/tree/main/basic_syntax_conditional_statements_and_loops_lab)
+➡ [Basic Syntax, Conditional Statements and Loops - lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/basic_syntax_conditional_statements_and_loops_lab)
 
 ➡[Basic Syntax, Conditional Statements and Loops-Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/basic_syntax_conditional_statements_and_loops_exercise)
+
+➡[Basic Syntax, Conditional Statements and Loops-More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/basic_syntax_conditional_statements_and_loops_more_exercises)
+
+➡[Data Types and Variables lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_lab)
+
+➡[Data Types and Variables Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_exercise)
