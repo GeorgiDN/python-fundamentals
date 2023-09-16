@@ -12,6 +12,8 @@ Online judge system - https://judge.softuni.org/
 
 ➡[Basic Syntax, Conditional Statements and Loops-More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/basic_syntax_conditional_statements_and_loops_more_exercises)
 
-➡[Data Types and Variables lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_lab)
+➡[Data Types and Variables - lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_lab)
 
-➡[Data Types and Variables Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_exercise)
+➡[Data Types and Variables - Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_exercise)
+
+➡[Data Types and Variables - More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_more_exercises)
