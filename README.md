@@ -17,3 +17,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Data Types and Variables - Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_exercise)
 
 ➡[Data Types and Variables - More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/data_types_and_variables_more_exercises)
+
+➡[Lists Basics - Lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/lists_basics_lab)
