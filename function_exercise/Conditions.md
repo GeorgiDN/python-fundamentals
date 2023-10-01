@@ -1,1 +1,1 @@
-➡[Conditions](https://judge.softuni.org/Contests/Compete/DownloadResource/40497)
+➡[Conditions:Function-Exercise](https://judge.softuni.org/Contests/Compete/DownloadResource/40497)
