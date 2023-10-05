@@ -27,3 +27,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Functions - Lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/function_lab)
 
 ➡[Functions - Exercise](https://github.com/GeorgiDN/python-fundamentals/tree/main/function_exercise)
+
+➡[Functions - More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/function_more_exercises)
