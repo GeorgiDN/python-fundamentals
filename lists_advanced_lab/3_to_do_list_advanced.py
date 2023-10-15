@@ -13,3 +13,22 @@ while True:
 
 result = [element for element in notes if element != 0]
 print(result)
+
+
+#ADVANCED
+# def process_todo_notes():
+#     todo_notes = []
+
+#     while True:
+#         note = input()
+#         if note == 'End':
+#             break
+
+#         todo_notes.append(note)
+
+#     sorted_notes = sorted(todo_notes, key=lambda x: int(x.split('-')[0]))
+#     result_sorted_notes = [note.split('-') for note in sorted_notes]
+#     return result_sorted_notes
+
+# result = process_todo_notes()
+# print(result)
