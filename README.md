@@ -33,3 +33,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Lists Advanced - Lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/lists_advanced_lab)
 
 ➡[Lists Advanced - Exercise](https://github.com/GeorgiDN/python-fundamentals/tree/main/lists_advanced_exercise)
+
+➡[Lists Advanced - More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/lists_advanced_more_exercises)
