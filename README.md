@@ -37,3 +37,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Lists Advanced - More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/lists_advanced_more_exercises)
 
 ➡[Objects and Classes - Lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/object_and_casses)
+
+➡[Objects and Classes - Exercise](https://github.com/GeorgiDN/python-fundamentals/tree/main/object_and_casses_exercise)
