@@ -41,3 +41,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Objects and Classes - Exercise](https://github.com/GeorgiDN/python-fundamentals/tree/main/object_and_casses_exercise)
 
 ➡[Dictionaries - Lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/dictionaries_lab)
+
+➡[Dictionaries - Exercise](https://github.com/GeorgiDN/python-fundamentals/tree/main/dictionaries_exercise)
