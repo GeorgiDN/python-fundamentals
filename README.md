@@ -43,3 +43,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Dictionaries - Lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/dictionaries_lab)
 
 ➡[Dictionaries - Exercise](https://github.com/GeorgiDN/python-fundamentals/tree/main/dictionaries_exercise)
+
+➡[Dictionaries - More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/dictionaries_more_exercise)
