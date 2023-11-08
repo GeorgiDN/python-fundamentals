@@ -1,0 +1,15 @@
+title = input()
+content = input()
+space = "    "
+print("<h1>")
+print(f"{space}{title}")
+print("</h1>")
+print("<article>")
+print(f"{space}{content}")
+print("</article>")
+comment = input()
+while comment != "end of comments":
+    print("<div>")
+    print(f"{space}{comment}")
+    print("</div>")
+    comment = input()
