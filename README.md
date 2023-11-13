@@ -55,3 +55,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Regular Expressions - Lab](https://github.com/GeorgiDN/python-fundamentals/tree/main/regular_expressions_lab)
 
 ➡[Regular Expressions - Exercise](https://github.com/GeorgiDN/python-fundamentals/tree/main/regular_expressions_exercise)
+
+➡[Regular Expressions - More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/regular_expressions_more_exercises)
