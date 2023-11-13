@@ -1,26 +1,25 @@
-quantity_decoration = int(input())
-days_left = int(input())
-
-spirit_points = 0
-total_cost = 0
-
-for day in range(1, days_left + 1):
-    if day % 2 == 0:
-        total_cost += 2 * quantity_decoration
-        spirit_points += 5
-    if day % 3 == 0:
-        total_cost += 8 * quantity_decoration
-        spirit_points += 13
-    if day % 5 == 0:
-        total_cost += 15 * quantity_decoration
-        spirit_points += 17
-    if day % 10 == 0:
-        quantity_decoration += 2  # Увеличаваме количеството преди да ги купим
-        spirit_points -= 20
-        total_cost += 23
-
-if days_left == 10:
-    spirit_points -= 30
-
-print(f"Total cost: {total_cost}")
-print(f"Total spirit: {spirit_points}")
+decorations_quantity = int(input())
+days_until_christmas = int(input())
+budget = 0
+total_spirit = 0
+for days in range(1, days_until_christmas + 1):
+    if days % 11 == 0:
+        decorations_quantity += 2
+    if days % 2 == 0:
+        budget += decorations_quantity * 2
+        total_spirit += 5
+    if days % 3 == 0:
+        budget += decorations_quantity * (5 + 3)
+        total_spirit += 3 + 10
+    if days % 5 == 0:
+        budget += decorations_quantity * 15
+        total_spirit += 17
+    if days % 3 == 0 and days % 5 == 0:
+        total_spirit += 30
+    if days % 10 == 0:
+        total_spirit -= 20
+        budget += 5 + 3 + 15
+if days_until_christmas % 10 == 0:
+    total_spirit -= 30
+print(f"Total cost: {budget:.0f}")
+print(f"Total spirit: {total_spirit}")
