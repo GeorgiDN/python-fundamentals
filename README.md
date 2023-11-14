@@ -57,3 +57,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Regular Expressions - Exercise](https://github.com/GeorgiDN/python-fundamentals/tree/main/regular_expressions_exercise)
 
 ➡[Regular Expressions - More Exercises](https://github.com/GeorgiDN/python-fundamentals/tree/main/regular_expressions_more_exercises)
+
+➡[01.Programming Fundamentals Mid Exam Retake](https://github.com/GeorgiDN/python-fundamentals/tree/main/mid_exam_preparation/1_programming_fundamentals_mid_exam_retake)
