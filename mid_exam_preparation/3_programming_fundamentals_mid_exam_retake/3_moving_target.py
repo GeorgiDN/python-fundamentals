@@ -37,13 +37,19 @@ while True:
     elif action == "Strike":
         strike_idx, radius = int(info[1]), int(info[2])
         if valid_radius(target_sequence, strike_idx, radius):
-            start_idx = max(0, strike_idx - radius)
-            end_idx = min(len(target_sequence), strike_idx + radius + 1)
-            target_sequence = target_sequence[:start_idx] + target_sequence[end_idx:]
+            for i in range(radius+2):
+                target_sequence.pop(strike_idx-1)
+
         else:
             print("Strike missed!")
 
 print('|'.join(map(str, target_sequence)))
+
+
+
+
+
+
 
 
 ######################################################################################  CONDITION  ##########################################################################################################################################
