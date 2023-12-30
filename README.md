@@ -64,4 +64,6 @@ Online judge system - https://judge.softuni.org/
 
 ➡[03.Programming Fundamentals Mid Exam Retake](https://github.com/GeorgiDN/python-fundamentals/tree/main/mid_exam_preparation/3_programming_fundamentals_mid_exam_retake)
 
+➡[04.Programming Fundamentals Mid Exam](https://github.com/GeorgiDN/python-fundamentals/tree/main/mid_exam_preparation/04.%20Programming%20Fundamentals%20Mid%20Exam)
+
 ➡[Final exam preparation](https://github.com/GeorgiDN/python-fundamentals/tree/main/final_exam_preparation)
