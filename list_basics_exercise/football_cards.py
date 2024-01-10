@@ -1,20 +1,18 @@
-cards = input()
-my_first_list = cards.split()
-my_second_list = set(my_first_list)
+team_a_count = 11
+team_b_count = 11
 
-my_list = list(my_second_list)
-
-count_a = sum(1 for card in my_list if card.startswith('A'))
-count_b = sum(1 for card in my_list if card.startswith('B'))
-
-team_a = 11
-team_b = 11
-
-team_a_final = team_a - count_a
-team_b_final = team_b - count_b
-
-if team_a_final < 7 or team_b_final < 7:
-    print(f'Team A - {team_a_final}; Team B - {team_b_final}')
-    print('Game was terminated')
-else:
-    print(f'Team A - {team_a_final}; Team B - {team_b_final}')
+cards_list = input().split(" ")
+cards_list = list(dict.fromkeys(cards_list))
+game_was_terminated = False
+for i in range(len(cards_list)):
+    current_player = cards_list[i]
+    if current_player[0] == "A":
+        team_a_count -= 1
+    elif current_player[0] == "B":
+        team_b_count -= 1
+    if team_a_count < 7 or team_b_count < 7:
+        game_was_terminated = True
+        break
+print(f"Team A - {team_a_count}; Team B - {team_b_count}")
+if game_was_terminated:
+    print("Game was terminated")
