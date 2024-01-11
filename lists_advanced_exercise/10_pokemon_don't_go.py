@@ -1,31 +1,21 @@
-number_of_lines = int(input())
-open_bracket = False
-closed_bracket = False
-parentheses_are_balanced = False
-for _ in range(number_of_lines):
-    symbol = input()
-    if symbol == "(":
-        if not open_bracket:
-            open_bracket = True
+numbers_sequence = list(map(int, input().split()))
+removed_pokemons = []
+while len(numbers_sequence) > 0:
+    current_index = int(input())
+    if current_index < 0:
+        removed = numbers_sequence[0]
+        numbers_sequence[0] = numbers_sequence[-1]
+    elif current_index >= len(numbers_sequence):
+        removed = numbers_sequence[-1]
+        numbers_sequence[-1] = numbers_sequence[0]
+    else:
+        removed = numbers_sequence.pop(current_index)
+    removed_pokemons.append(removed)
+    result_list = []
+    for number in numbers_sequence:
+        if number <= removed:
+            result_list.append(number + removed)
         else:
-            parentheses_are_balanced = False
-            break
-    elif symbol == ")":
-        if not open_bracket:
-            parentheses_are_balanced = False
-            break
-        elif not closed_bracket:
-            closed_bracket = True
-            if open_bracket and closed_bracket:
-                closed_bracket = False
-                open_bracket = False
-                parentheses_are_balanced = True
-            else:
-                parentheses_are_balanced = False
-        else:
-            parentheses_are_balanced = False
-            break
-if parentheses_are_balanced:
-    print("BALANCED")
-else:
-    print("UNBALANCED")
+            result_list.append(number - removed)
+    numbers_sequence = result_list.copy()
+print(sum(removed_pokemons))
