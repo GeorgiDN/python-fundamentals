@@ -1,6 +1,10 @@
+def take_input():
+    return input()
+
+
 def sorting_hat():
     while True:
-        name = input()
+        name = take_input()
         if name == "Welcome!":
             return print("Welcome to Hogwarts.")
         if name == "Voldemort":
