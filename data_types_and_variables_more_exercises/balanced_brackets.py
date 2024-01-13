@@ -1,23 +1,67 @@
-lines = int(input())
-balanced = True
-balance = 0
+def take_string_input():
+    return input()
 
-for _ in range(lines):
-    expression = input()
 
-    if expression == '(':
-        balance += 1
-    elif expression == ')':
-        balance -= 1
+def take_int_input():
+    return int(input())
 
-    if balance > 1 or balance < 0:
-        balanced = False
-        break
 
-if balanced:
-    print('BALANCED')
-else:
-    print('UNBALANCED')
+def increase_balance(bal):
+    return bal + 1
+
+
+def reduce_balance(bal):
+    return bal - 1
+
+
+def check_balanced_brackets(lines):
+    balanced = True
+    balance = 0
+    for _ in range(lines):
+        expression = take_string_input()
+
+        if expression == '(':
+            balance = increase_balance(balance)
+        elif expression == ')':
+            balance = reduce_balance(balance)
+
+        if balance > 1 or balance < 0:
+            balanced = False
+            break
+
+    if balanced:
+        return print('BALANCED')
+    else:
+        return print('UNBALANCED')
+
+
+number_of_lines = take_int_input()
+check_balanced_brackets(number_of_lines)
+
+
+
+# lines = int(input())
+# balanced = True
+# balance = 0
+
+# for _ in range(lines):
+#     expression = input()
+
+#     if expression == '(':
+#         balance += 1
+#     elif expression == ')':
+#         balance -= 1
+
+#     if balance > 1 or balance < 0:
+#         balanced = False
+#         break
+
+# if balanced:
+#     print('BALANCED')
+# else:
+#     print('UNBALANCED')
+
+
 
 
 # number_of_lines = int(input())
