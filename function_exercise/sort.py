@@ -1,9 +1,10 @@
-number_list = list(map(int, input().split()))
-def sort():
-    sorted_list = list(sorted(number_list))
+def sort(list_with_numbers):
+    sorted_list = list(sorted(list_with_numbers))
     print(sorted_list)
 
-sort()
+
+number_list = list(map(int, input().split()))
+sort(number_list)
 
 
 # number_list = list(map(int, input().split()))
