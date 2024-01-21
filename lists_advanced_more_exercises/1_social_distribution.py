@@ -1,52 +1,52 @@
-population = list(map(int, input().split(", ")))
+population = [int(x) for x in input().split(", ")]
 minimum_wealth = int(input())
-countries_count = len(population)
-if sum(population) < countries_count * minimum_wealth:
+count_of_countries = len(population)
+
+if sum(population) < count_of_countries * minimum_wealth:
     print("No equal distribution possible")
 else:
-    while min(population) < minimum_wealth:
-        for index, country in enumerate(population):
+    while True:
+        if min(population) >= minimum_wealth:
+            break
+        for idx, country in enumerate(population):
+            max_country_index = population.index(max(population))
             if country < minimum_wealth:
-                difference = minimum_wealth - country
-                population[index] += difference
-                max_population_index = population.index(max(population))
-                population[max_population_index] -= difference
+                diff = minimum_wealth - country
+                population[idx] += diff
+                population[max_country_index] -= diff
+
     print(population)
 
 
 
 
+# population = [int(x) for x in input().split(", ")]
+# minimum_wealth = int(input())
+# equal_distribution = True
+
+# while True:
+#     max_number = max(population)
+#     min_number = min(population)
+
+#     difference = minimum_wealth - min_number
+#     if max_number - difference < minimum_wealth:
+#         print("No equal distribution possible")
+#         equal_distribution = False
+#         break
+
+#     if min_number >= minimum_wealth:
+#         break
+
+#     for idx, number in enumerate(population):
+#         max_number = max(population)
+#         max_index = population.index(max(population))
+#         min_number = min(population)
+#         if number < minimum_wealth:
+#             diff = minimum_wealth - number
+#             if max_number - diff >= minimum_wealth:
+#                 population[idx] += diff
+#                 population[max_index] -= diff
 
 
-# 80/100
-# def distribute_wealth(population, min_wealth):
-#     total_wealth = sum(population)
-#     min_population = len(population) * min_wealth
-
-#     if total_wealth < min_population:
-#         return "No equal distribution possible"
-
-#     remaining_wealth = max(population) - min(population)
-#     population.sort()
-
-#     for i in range(len(population)):
-#         if remaining_wealth <= 0:
-#             break
-
-#         difference = min_wealth - population[i]
-#         if difference > 0:
-#             give_wealth = min(difference, remaining_wealth)  # Взимаме по-малкото от необходимото богатство и разликата
-#             population[i] += give_wealth
-#             remaining_wealth -= give_wealth
-#             max_value = max(population)
-#             max_index = population.index(max_value)
-#             population[max_index] -= difference
-
-#     return population
-
-
-# population = list(map(int, input().split(', ')))
-# min_wealth = int(input())
-
-# result = distribute_wealth(population, min_wealth)
-# print(result)
+# if equal_distribution:
+#     print(population)
