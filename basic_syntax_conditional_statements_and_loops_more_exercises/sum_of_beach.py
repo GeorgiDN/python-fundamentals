@@ -1,6 +1,9 @@
 word = input().lower()
-search_for = ["sand", "water", "fish", "sun"]
-print(sum(word.count(item) for item in search_for))
+print(sum(word.count(item) for item in ["sand", "water", "fish", "sun"]))
+
+# word = input().lower()
+# search_for = ["sand", "water", "fish", "sun"]
+# print(sum(word.count(item) for item in search_for))
 
 
 
