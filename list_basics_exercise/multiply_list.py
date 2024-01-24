@@ -5,6 +5,10 @@ print(list_numbers)
 
 
 
+# factor, count = int(input()), int(input())
+# print([number * factor for number in range(1, count + 1)])
+
+
 
 # factor = int(input())
 # count = int(input())
