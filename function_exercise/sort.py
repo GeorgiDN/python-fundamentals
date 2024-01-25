@@ -1,10 +1,19 @@
-def sort(list_with_numbers):
-    sorted_list = list(sorted(list_with_numbers))
-    print(sorted_list)
+def sorted_numbers(lst):
+    return sorted(lst)
 
 
-number_list = list(map(int, input().split()))
-sort(number_list)
+list_with_numbers = [int(x) for x in input().split(" ")]
+print(sorted_numbers(list_with_numbers))
+
+
+
+# def sort(list_with_numbers):
+#     sorted_list = list(sorted(list_with_numbers))
+#     print(sorted_list)
+
+
+# number_list = list(map(int, input().split()))
+# sort(number_list)
 
 
 # number_list = list(map(int, input().split()))
