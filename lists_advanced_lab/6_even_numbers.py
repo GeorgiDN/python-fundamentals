@@ -1,12 +1,17 @@
-number_list = list(map(int, input().split(', ')))
+number_list = [int(x) for x in input().split(", ")]
+print([idx for idx, number in enumerate(number_list) if number % 2 == 0])
 
-even_indices = []
 
-for index, num in enumerate(number_list):
-    if num % 2 == 0:
-        even_indices.append(index)
 
-print(even_indices)
+# number_list = list(map(int, input().split(', ')))
+
+# even_indices = []
+
+# for index, num in enumerate(number_list):
+#     if num % 2 == 0:
+#         even_indices.append(index)
+
+# print(even_indices)
 
 
 
