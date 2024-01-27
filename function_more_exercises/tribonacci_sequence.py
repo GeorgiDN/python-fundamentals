@@ -1,24 +1,23 @@
-def get_tribonacci_numbers(number):
-    first_num = 1
-    second_num = 1
-    third_num = 2
-    tribonacci_list = [first_num]
+def take_tribonacci_sequence(number):
+    a, b, c = 1, 1, 2
+    tribonacci_list = [a]
     if number > 1:
-        tribonacci_list.append(second_num)
+        tribonacci_list.append(b)
     if number > 2:
-        tribonacci_list.append(third_num)
+        tribonacci_list.append(c)
     while len(tribonacci_list) < number:
-        for i in range(number - 3):
-            current_num = first_num + second_num + third_num
-            first_num = second_num
-            second_num = third_num
-            third_num = current_num
+        for _ in range(number - 3):
+            current_num = a + b + c
+            a = b
+            b = c
+            c = current_num
             tribonacci_list.append(current_num)
+
     return tribonacci_list
 
 
 user_number = int(input())
-print(*get_tribonacci_numbers(user_number))
+print(*take_tribonacci_sequence(user_number))
 
 
 # 90/100
