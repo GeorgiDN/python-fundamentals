@@ -1,34 +1,35 @@
-notes = [0] * 10
-
+list_with_notes = {}
 while True:
     command = input()
-    if command == 'End':
+    if command == "End":
         break
-
-    tokens = command.split('-')
-    priority = int(tokens[0]) - 1
-    note = tokens[1]
-    notes.pop(priority)
-    notes.insert(priority, note)
-
-result = [element for element in notes if element != 0]
-print(result)
+    importance, note = command.split("-")
+    importance = int(importance)
+    if note not in list_with_notes:
+        list_with_notes[importance] = note
 
 
-#ADVANCED
-# def process_todo_notes():
-#     todo_notes = []
+sorted_priorities = dict(sorted(list_with_notes.items()))
+to_do_list = [val for key, val in sorted_priorities.items()]
+print(to_do_list)
 
-#     while True:
-#         note = input()
-#         if note == 'End':
-#             break
 
-#         todo_notes.append(note)
 
-#     sorted_notes = sorted(todo_notes, key=lambda x: int(x.split('-')[0]))
-#     result_sorted_notes = [note.split('-') for note in sorted_notes]
-#     return result_sorted_notes
-
-# result = process_todo_notes()
+# notes = [0] * 10
+#
+# while True:
+#     command = input()
+#     if command == 'End':
+#         break
+#
+#     tokens = command.split('-')
+#     priority = int(tokens[0]) - 1
+#     note = tokens[1]
+#     notes.pop(priority)
+#     notes.insert(priority, note)
+#
+# result = [element for element in notes if element != 0]
 # print(result)
+#
+
+
