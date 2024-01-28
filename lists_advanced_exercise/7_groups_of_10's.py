@@ -1,5 +1,5 @@
 list_numbers = [int(x) for x in input().split(", ")]
-groups = {}
+sorted_groups = {}
 group = 0
 
 while True:
@@ -9,15 +9,10 @@ while True:
     if max(list_numbers) > group:
         group += 10
 
-    groups[group] = []
-
-    for i, num in enumerate(list_numbers):
-        if num <= group:
-            groups[group].append(num)
-
+    sorted_groups[group] = [num for num in list_numbers if num <= group]
     list_numbers = [x for x in list_numbers if x > group]
 
-for key, value in groups.items():
+for key, value in sorted_groups.items():
     print(f"Group of {key}'s: {value}")
 
 
