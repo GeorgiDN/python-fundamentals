@@ -19,7 +19,6 @@ def remove(lst, lesson, lesons_with_exr):
     else:
         if lesson in lst:
             lst.remove(lesson)
-
     return lst, lesons_with_exr
 
 
@@ -111,7 +110,6 @@ list_schedule = input().split(", ")
 course_planning(list_schedule)
 for num, course in enumerate(list_schedule):
     print(f"{num + 1}.{course}")
-
 
 
 
