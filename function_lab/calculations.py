@@ -1,7 +1,3 @@
-operator = input()
-num_1 = int(input())
-num_2 = int(input())
-
 def solve(num_1, num_2, operator):
     result = None
     if operator == 'multiply':
@@ -14,5 +10,9 @@ def solve(num_1, num_2, operator):
         result = num_1 - num_2
     return result
 
-print(solve(num_1, num_2, operator))
+
+current_operator = input()
+number_1 = int(input())
+number_2 = int(input())
+print(solve(number_1, number_2, current_operator))
 
