@@ -2,15 +2,37 @@ class Party:
     def __init__(self):
         self.people = []
 
+    def add_people(self):
+        while True:
+            name = input()
+            if name == "End":
+                break
+
+            self.people.append(name)
+
+
 party = Party()
-
-line = input()
-while line != 'End':
-    party.people.append(line)
-    line = input()
-
+party.add_people()
 print(f"Going: {', '.join(party.people)}")
 print(f"Total: {len(party.people)}")
+
+
+
+
+
+# class Party:
+#     def __init__(self):
+#         self.people = []
+
+# party = Party()
+
+# line = input()
+# while line != 'End':
+#     party.people.append(line)
+#     line = input()
+
+# print(f"Going: {', '.join(party.people)}")
+# print(f"Total: {len(party.people)}")
 
 
 
