@@ -7,10 +7,7 @@ while True:
 
     data = information.split(": ")
     product, quantity = data[0], int(data[1])
-    if product not in products_with_quantity:
-        products_with_quantity[product] = quantity
-    else:
-        products_with_quantity[product] += quantity
+    products_with_quantity[product] = products_with_quantity.get(product, 0) + quantity
 
 total_products = len(products_with_quantity)
 total_quantity = sum([val for val in products_with_quantity.values()])
@@ -19,6 +16,30 @@ print(f"Products in stock:")
 print('\n'.join([f"- {key}: {val_}" for key, val_ in products_with_quantity.items()]))
 print(f"Total Products: {total_products}\n"
       f"Total Quantity: {total_quantity}")
+
+
+
+# products_with_quantity = {}
+
+# while True:
+#     information = input()
+#     if information == "statistics":
+#         break
+
+#     data = information.split(": ")
+#     product, quantity = data[0], int(data[1])
+#     if product not in products_with_quantity:
+#         products_with_quantity[product] = quantity
+#     else:
+#         products_with_quantity[product] += quantity
+
+# total_products = len(products_with_quantity)
+# total_quantity = sum([val for val in products_with_quantity.values()])
+
+# print(f"Products in stock:")
+# print('\n'.join([f"- {key}: {val_}" for key, val_ in products_with_quantity.items()]))
+# print(f"Total Products: {total_products}\n"
+#       f"Total Quantity: {total_quantity}")
 
 
 
