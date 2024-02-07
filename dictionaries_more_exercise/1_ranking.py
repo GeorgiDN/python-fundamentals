@@ -6,7 +6,7 @@ def register_in_contest(rankings, contest_and_passwords_info, curr_contest, curr
         if curr_contest not in rankings[curr_username]:
             rankings[curr_username][curr_contest] = curr_points
 
-        if curr_contest in rankings[curr_username]:
+        else:
             if rankings[curr_username][curr_contest] < curr_points:
                 rankings[curr_username][curr_contest] = curr_points
 
@@ -59,11 +59,11 @@ def ranking_task():
             ranking_data = \
                 register_in_contest(ranking_data, contest_and_passwords_for_validate, contest, password, username, points)
 
-
     sort_and_print_result(ranking_data)
 
 
 ranking_task()
+
 
 
 
