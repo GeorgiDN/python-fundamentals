@@ -13,6 +13,28 @@ def register_in_contest(rankings, contest_and_passwords_info, curr_contest, curr
     return rankings
 
 
+def sort_and_print_result(rankings):
+    best_user = ""
+    best_points = 0
+
+    for user, user_submissions in rankings.items():
+        total_points = sum(user_submissions.values())
+        if total_points > best_points:
+            best_user = user
+            best_points = total_points
+
+    print(f"Best candidate is {best_user} with total {best_points} points.")
+    print("Ranking:")
+
+    sorted_ranking_data = dict(sorted(rankings.items(), key=lambda x: x[0]))
+
+    for user, user_submissions in sorted_ranking_data.items():
+        print(user)
+        sorted_contest_points = dict(sorted(user_submissions.items(), key=lambda x: -x[1]))
+        for contest_, points_ in sorted_contest_points.items():
+            print(f"#  {contest_} -> {points_}")
+
+
 def ranking_task():
     contest_and_passwords_for_validate = {}
     ranking_data = {}
@@ -38,25 +60,7 @@ def ranking_task():
                 register_in_contest(ranking_data, contest_and_passwords_for_validate, contest, password, username, points)
 
 
-    best_user = ""
-    best_points = 0
-
-    for user, user_submissions in ranking_data.items():
-        total_points = sum(user_submissions.values())
-        if total_points > best_points:
-            best_user = user
-            best_points = total_points
-
-    print(f"Best candidate is {best_user} with total {best_points} points.")
-    print("Ranking:")
-
-    sorted_ranking_data = dict(sorted(ranking_data.items(), key=lambda x: x[0]))
-
-    for user, user_submissions in sorted_ranking_data.items():
-        print(user)
-        sorted_contest_points = dict(sorted(user_submissions.items(), key=lambda x: -x[1]))
-        for contest_, points_ in sorted_contest_points.items():
-            print(f"#  {contest_} -> {points_}")
+    sort_and_print_result(ranking_data)
 
 
 ranking_task()
