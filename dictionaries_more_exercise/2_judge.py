@@ -24,7 +24,7 @@ def judge_task():
             break
 
         data = command.split(" -> ")
-        name, contest, points = data[0], data[1], int(data[2],)
+        name, contest, points = data[0], data[1], int(data[2])
 
         if contest not in contests_data:
             contests_data[contest] = {}
@@ -72,7 +72,7 @@ judge_task()
 #             break
 #
 #         data = command.split(" -> ")
-#         name, contest, points = data[0], data[1], int(data[2],)
+#         name, contest, points = data[0], data[1], int(data[2])
 #
 #         if contest not in contests_data:
 #             contests_data[contest] = {}
