@@ -1,48 +1,47 @@
-users = {}
-contests = {}
-input_line = input().split(" -> ")
-while input_line[0] != "no more time":
-    username, contest, points = input_line[0], input_line[1], int(input_line[2])
-    if contest not in contests:
-        contests[contest] = {username: 0}
-    if username not in contests[contest]:
-        contests[contest][username] = 0
-    else:
-        if points < contests[contest][username]:
-            points = contests[contest][username]
-    contests[contest][username] = points
-    contests[contest][username] = points
-    if username not in users:
-        users[username] = {"total_points": 0, contest: 0}
-    if contest not in users[username]:
-        users[username][contest] = 0
-    else:
-        users[username]["total_points"] -= users[username][contest]
-        if points < users[username][contest]:
-            points = users[username][contest]
-    users[username]["total_points"] += points
-    users[username][contest] = points
-    input_line = input().split(" -> ")
+def sort_and_print_result(contests, standings):
+    for curr_contest, participants in contests.items():
+        print(f"{curr_contest}: {len(participants)} participants")
+        sorted_contest_data = dict(sorted(participants.items(), key=lambda x: (-x[1], x[0])))
+        num = 1
+        for user, curr_points in sorted_contest_data.items():
+            print(f"{num}. {user} <::> {curr_points}")
+            num += 1
 
-for contest in contests:
-    print(f"{contest}: {len(contests[contest])} participants")
-    sorted_participants = sorted(contests[contest].items(), key=lambda x: (-x[1], x[0]))
-    sorted_contest = dict(sorted_participants)
-    counter = 0
-    for participant, points in sorted_contest.items():
-        counter += 1
-        print(f"{counter}. {participant} <::> {points}")
+    sorted_individual_standings = dict(sorted(standings.items(), key=lambda x: (-x[1], x[0])))
+    num = 1
+    print("Individual standings:")
+    for curr_name, current_points in sorted_individual_standings.items():
+        print(f"{num}. {curr_name} -> {current_points}")
+        num += 1
 
-new_keys = []
-new_values = []
-for key, value in users.items():
-    new_keys.append(key)
-    new_values.append(value["total_points"])
-user_scores = dict(zip(new_keys, new_values))
-sorted_scores = dict(sorted(user_scores.items(), key=lambda k: (-k[1], k[0])))
-print("Individual standings:")
-counter = 0
-for key, value in sorted_scores.items():
-    counter += 1
-    print(f"{counter}. {key} -> {value}")
+
+def judge_task():
+    contests_data = {}
+    individual_standings = {}
+    while True:
+        command = input()
+        if command == "no more time":
+            break
+
+        data = command.split(" -> ")
+        name, contest, points = data[0], data[1], int(data[2],)
+
+        if contest not in contests_data:
+            contests_data[contest] = {}
+
+        if name not in contests_data[contest]:
+            contests_data[contest][name] = points
+            if name not in individual_standings:
+                individual_standings[name] = 0
+            individual_standings[name] += points
+
+        else:
+            if contests_data[contest][name] < points:
+                contests_data[contest][name] = points
+                individual_standings[name] = points
+
+    sort_and_print_result(contests_data, individual_standings)
+
+
+judge_task()
   
