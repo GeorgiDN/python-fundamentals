@@ -1,9 +1,12 @@
+import re
+
+
 def digits_letters_and_other():
     text = input()
 
-    digits = [char for char in text if char.isdigit()]
-    letters = [char for char in text if char.isalpha()]
-    other = [char for char in text if not char.isalpha() and not char.isdigit()]
+    digits = re.findall("\\d", text)
+    letters = re.findall("[A-Za-z]", text)
+    other = re.findall(r"[^A-Za-z\d]", text)
 
     print(''.join(digits))
     print(''.join(letters))
@@ -11,6 +14,22 @@ def digits_letters_and_other():
 
 
 digits_letters_and_other()
+
+
+
+# def digits_letters_and_other():
+#     text = input()
+
+#     digits = [char for char in text if char.isdigit()]
+#     letters = [char for char in text if char.isalpha()]
+#     other = [char for char in text if not char.isalpha() and not char.isdigit()]
+
+#     print(''.join(digits))
+#     print(''.join(letters))
+#     print(''.join(other))
+
+
+# digits_letters_and_other()
 
 
 
