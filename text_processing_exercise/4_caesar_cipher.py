@@ -1,10 +1,10 @@
 text = input()
-decipher_text = ""
+encrypted_message = ""
 for char in text:
     letter = chr(ord(char) + 3)
-    decipher_text += letter
+    encrypted_message += letter
 
-print(decipher_text)
+print(encrypted_message)
 
 
 # def encrypt(message):
