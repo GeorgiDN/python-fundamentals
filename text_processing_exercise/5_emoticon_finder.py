@@ -9,3 +9,15 @@ for i in range(len(text) - 1):
 
 for emoticon in emoticons:
     print(emoticon)
+
+
+
+# 80/100
+# import re
+#
+# text = input()
+# pattern = ":(.)"
+#
+# matches = re.finditer(pattern, text)
+# for match in matches:
+#     print(f":{match.group(1)}")
