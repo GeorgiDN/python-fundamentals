@@ -10,7 +10,7 @@ class BonusScoreSystem:
         self.bonuses = []
         self.attendances = []
 
-    def bonus_score_system_task_implementation(self):
+    def calculate_max_bonus(self):
         for _ in range(self.number_of_students):
             student_attendances = int(input())
             bonus = student_attendances / self.total_number_of_lectures * (5 + self.additional_bonus)
@@ -18,16 +18,16 @@ class BonusScoreSystem:
             self.attendances.append(student_attendances)
 
         if self.bonuses:
-            max_bonus = (max(self.bonuses))
+            max_bonus_points = (max(self.bonuses))
         else:
-            max_bonus = 0
+            max_bonus_points = 0
 
         if self.attendances:
             max_count_of_lectures = (max(self.attendances))
         else:
             max_count_of_lectures = 0
 
-        print(f"Max Bonus: {math.ceil(max_bonus)}.")
+        print(f"Max Bonus: {math.ceil(max_bonus_points)}.")
         print(f"The student has attended {max_count_of_lectures} lectures.")
 
 
@@ -35,7 +35,7 @@ students = int(input())
 number_of_lectures = int(input())
 bonus_additional = int(input())
 bonus_score_system = BonusScoreSystem(students, number_of_lectures, bonus_additional)
-bonus_score_system.bonus_score_system_task_implementation()
+bonus_score_system.calculate_max_bonus()
 
 
 
