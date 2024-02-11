@@ -1,10 +1,24 @@
-ban_list = input().split(', ')
-text = input()
+def text_filter():
+    banned_list = input().split(', ')
+    text = input()
 
-for banned_word in ban_list:
-    text = text.replace(banned_word, '*' * len(banned_word))
+    for banned_word in banned_list:
+        text = text.replace(banned_word, '*' * len(banned_word))
 
-print(text)
+    print(text)
+
+
+text_filter()
+
+
+
+# ban_list = input().split(', ')
+# text = input()
+
+# for banned_word in ban_list:
+#     text = text.replace(banned_word, '*' * len(banned_word))
+
+# print(text)
 
 
 
