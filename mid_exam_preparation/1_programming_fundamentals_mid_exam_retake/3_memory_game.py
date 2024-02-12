@@ -1,33 +1,44 @@
-elements = [i for i in input().split()]
+def is_valid_index(lst, idx):
+    return 0 <= idx < len(lst)
 
-moves = 0
 
-while True:
-    command = input()
-    if command == "end":
-        break
+def memory_game():
+    elements = input().split()
+    moves = 0
+    while True:
+        command = input()
+        if command == "end":
+            break
 
-    [el_1, el_2] = command.split()
-    el_1 = int(el_1)
-    el_2 = int(el_2)
-    moves += 1
-    if el_1 == el_2 or el_1 not in range(len(elements)) or el_2 not in range(len(elements)):
-        elements.insert(int(len(elements) // 2), f"-{moves}a")
-        elements.insert(int(len(elements) // 2+1), f"-{moves}a")
-        print("Invalid input! Adding additional elements to the board")
-        continue
-    if elements[el_1] == elements[el_2]:
-        print(f"Congrats! You have found matching elements - {elements[el_1]}!")
-        elements = [el for el in elements if not el == elements[el_1] or not el == elements[el_2]]
-    else:
-        print("Try again!")
-    if not elements:
-        print(f"You have won in {moves} turns!")
-        break
+        indices_data = command.split()
+        index_1, index_2 = int(indices_data[0]), int(indices_data[1])
+        moves += 1
+        if is_valid_index(elements, index_1) and is_valid_index(elements, index_2) and index_1 != index_2:
+            if elements[index_1] == elements[index_2]:
+                matching_element = elements[index_1]
+                while matching_element in elements:
+                    elements.remove(matching_element)
+                print(f"Congrats! You have found matching elements - {matching_element}!")
 
-if len(elements) > 0:
-    print("Sorry you lose :(")
-    print(f"{' '.join(elements)}")
+            else:
+                print("Try again!")
+
+        else:
+            print("Invalid input! Adding additional elements to the board")
+            index_middle_of_the_list = len(elements) // 2
+            elements.insert(index_middle_of_the_list, f"-{moves}a")
+            elements.insert(index_middle_of_the_list + 1, f"-{moves}a")
+
+        if not elements:
+            print(f"You have won in {moves} turns!")
+            break
+
+    if elements:
+        print("Sorry you lose :(")
+        print(*elements)
+
+
+memory_game()
 
 
 
