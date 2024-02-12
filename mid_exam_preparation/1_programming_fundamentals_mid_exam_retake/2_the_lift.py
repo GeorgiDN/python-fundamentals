@@ -1,29 +1,61 @@
-people = int(input())
+def fill_wagons_with_people(wagons_, number_of_people_):
+    for wagon in range(len(wagons_)):
+        while wagons_[wagon] != 4:
+            if number_of_people_ == 0:
+                break
+            wagons_[wagon] += 1
+            number_of_people_ -= 1
 
-wagons = list(map(int, input().split()))
-empty_condition = False
+    return wagons_, number_of_people_
 
-for i in range(len(wagons)):
 
-    if people == 0:
-        break
+def is_lift_have_empy_spots(wagons_):
+    return all(wagon == 4 for wagon in wagons_)
 
-    while wagons[i] != 4:
-        if people == 0:
-            break
-        wagons[i] += 1
-        people -= 1
 
-for i in range(len(wagons)):
-    if wagons[i] != 4:
-        print('The lift has empty spots!')
-        empty_condition = True
-        break
+def lift():
+    number_of_people = int(input())
+    wagons = [int(x) for x in input().split()]
 
-if not empty_condition and people > 0:
-    print(f"There isn't enough space! {people} people in a queue!")
+    wagons, number_of_people = fill_wagons_with_people(wagons, number_of_people)
+    if not is_lift_have_empy_spots(wagons):
+        print("The lift has empty spots!")
+    else:
+        if number_of_people > 0:
+            print(f"There isn't enough space! {number_of_people} people in a queue!")
 
-print(' '.join(map(str, wagons)))
+    print(*wagons)
+
+
+lift()
+
+
+# people = int(input())
+
+# wagons = list(map(int, input().split()))
+# empty_condition = False
+
+# for i in range(len(wagons)):
+
+#     if people == 0:
+#         break
+
+#     while wagons[i] != 4:
+#         if people == 0:
+#             break
+#         wagons[i] += 1
+#         people -= 1
+
+# for i in range(len(wagons)):
+#     if wagons[i] != 4:
+#         print('The lift has empty spots!')
+#         empty_condition = True
+#         break
+
+# if not empty_condition and people > 0:
+#     print(f"There isn't enough space! {people} people in a queue!")
+
+# print(' '.join(map(str, wagons)))
 
 
 
