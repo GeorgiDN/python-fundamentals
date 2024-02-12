@@ -15,7 +15,7 @@ def take_ten_percent_of_discount(total_sum_, prices_with_taxes_):
 def take_taxes(taxes_, prices_without_taxes_, prices_with_taxes_):
     taxes_ = sum(prices_with_taxes_) - sum(prices_without_taxes_)
     return taxes_
-    pass
+
 
 
 def print_result(total_price_without_taxes_, taxes_, total_sum_):
