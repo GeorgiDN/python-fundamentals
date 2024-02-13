@@ -1,30 +1,73 @@
-my_list = list(map(int, input().split()))
+def swap(array_values_, idx1, idx2):
+    array_values_[idx1], array_values_[idx2] = array_values_[idx2], array_values_[idx1]
+    return array_values_
 
-while True:
 
-    text = input()
-    if text == 'end':
-        break
-    else:
-     command = text.split()
+def multiply(array_values_, idx1, idx2):
+    array_values_[idx1] *= array_values_[idx2]
+    return array_values_
 
-    if command[0] == 'swap':
-        index1 = int(command[1])
-        index2 = int(command[2])
 
-        my_list[index1], my_list[index2] = my_list[index2], my_list[index1]
+def decrease(array_values_):
+    array_values_ = [n - 1 for n in array_values_]
+    return array_values_
 
-    elif command[0] == 'multiply':
-         indx1 = int(command[1])
-         indx2 = int(command[2])
-         my_list[indx1] *= my_list[indx2]
 
-    elif command[0] == 'decrease':
-        for i in range(len(my_list)):
-            my_list[i] -= 1
+def array_modifier():
+    array_values = [int(x) for x in input().split()]
+    while True:
+        command = input()
+        if command == 'end':
+            break
 
-result = ', '.join(map(str, my_list))
-print(result)
+        data = command.split()
+        current_command = data[0]
+
+        if current_command == "swap":
+            index1, index2 = int(data[1]), int(data[2])
+            array_values = swap(array_values, index1, index2)
+
+        elif current_command == "multiply":
+            index1, index2 = int(data[1]), int(data[2])
+            array_values = multiply(array_values, index1, index2)
+
+        elif current_command == "decrease":
+            array_values = decrease(array_values)
+
+    print(", ".join(map(str, array_values)))
+
+
+array_modifier()
+
+
+
+# my_list = list(map(int, input().split()))
+
+# while True:
+
+#     text = input()
+#     if text == 'end':
+#         break
+#     else:
+#      command = text.split()
+
+#     if command[0] == 'swap':
+#         index1 = int(command[1])
+#         index2 = int(command[2])
+
+#         my_list[index1], my_list[index2] = my_list[index2], my_list[index1]
+
+#     elif command[0] == 'multiply':
+#          indx1 = int(command[1])
+#          indx2 = int(command[2])
+#          my_list[indx1] *= my_list[indx2]
+
+#     elif command[0] == 'decrease':
+#         for i in range(len(my_list)):
+#             my_list[i] -= 1
+
+# result = ', '.join(map(str, my_list))
+# print(result)
 
 
 
