@@ -1,41 +1,61 @@
-employ_1 = int(input())
-employ_2 = int(input())
-employ_3 = int(input())
+def softuni_reception():
+    first_employee_efficiency = int(input())
+    second_employee_efficiency = int(input())
+    third_employee_efficiency = int(input())
+    students_count = int(input())
+    hour = 1
 
-students = int(input())
+    total_hours_employees_efficiency = first_employee_efficiency + second_employee_efficiency + third_employee_efficiency
+    while students_count > 0:
+        if hour % 4 != 0:
+            students_count -= total_hours_employees_efficiency
+        hour += 1
 
-hours = 0
+    total_hours = hour - 1
+    print(f"Time needed: {total_hours}h.")
 
-while True:
 
-    if students == 0:
-        break
-    if hours > 0:
-        if (hours + 1) % 4 == 0:
-            hours += 1
-            continue
+softuni_reception()
 
-    for num1 in range(employ_1):
-        if students == 0:
-            break
-        else:
-            students -= 1
 
-    for num2 in range(employ_2):
-        if students == 0:
-            break
-        else:
-            students -= 1
+# employ_1 = int(input())
+# employ_2 = int(input())
+# employ_3 = int(input())
 
-    for num3 in range(employ_3):
-        if students == 0:
-            break
-        else:
-            students -= 1
+# students = int(input())
 
-    hours += 1
+# hours = 0
 
-print(f"Time needed: {hours}h.")
+# while True:
+
+#     if students == 0:
+#         break
+#     if hours > 0:
+#         if (hours + 1) % 4 == 0:
+#             hours += 1
+#             continue
+
+#     for num1 in range(employ_1):
+#         if students == 0:
+#             break
+#         else:
+#             students -= 1
+
+#     for num2 in range(employ_2):
+#         if students == 0:
+#             break
+#         else:
+#             students -= 1
+
+#     for num3 in range(employ_3):
+#         if students == 0:
+#             break
+#         else:
+#             students -= 1
+
+#     hours += 1
+
+# print(f"Time needed: {hours}h.")
 
 
 
