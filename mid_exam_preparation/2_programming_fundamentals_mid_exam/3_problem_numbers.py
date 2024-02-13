@@ -1,23 +1,35 @@
-number_list = list(map(int, input().split()))
+numbers = [int(x) for x in input().split()]
+top_numbers_greater_than_average = sorted([n for n in numbers if n > sum(numbers) / len(numbers)], reverse=True)
+if len(top_numbers_greater_than_average) > 5:
+    top_numbers_greater_than_average = [top_numbers_greater_than_average[i] for i in range(5)]
 
-average_number = sum(number_list) / len(number_list)
-numbers_greater_than_average = []
-
-number_list = sorted(number_list, reverse=True)
-
-count_five_numbers = 5
-for num in number_list:
-    if count_five_numbers == 0:
-        break
-    elif num > average_number:
-        numbers_greater_than_average.append(num)
-        count_five_numbers -= 1
-
-if numbers_greater_than_average:
-    result = ' '.join(map(str, numbers_greater_than_average))
-    print(result)
+if top_numbers_greater_than_average:
+    print(*top_numbers_greater_than_average)
 else:
-    print('No')
+    print("No")
+
+
+
+# number_list = list(map(int, input().split()))
+
+# average_number = sum(number_list) / len(number_list)
+# numbers_greater_than_average = []
+
+# number_list = sorted(number_list, reverse=True)
+
+# count_five_numbers = 5
+# for num in number_list:
+#     if count_five_numbers == 0:
+#         break
+#     elif num > average_number:
+#         numbers_greater_than_average.append(num)
+#         count_five_numbers -= 1
+
+# if numbers_greater_than_average:
+#     result = ' '.join(map(str, numbers_greater_than_average))
+#     print(result)
+# else:
+#     print('No')
 
 
 
