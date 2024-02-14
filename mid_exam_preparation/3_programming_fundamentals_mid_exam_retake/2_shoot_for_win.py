@@ -1,33 +1,73 @@
-def valid_index(lst, indx):
-    if 0 <= indx < len(lst):
-        return True
-    return None
+def is_valid_index(targets_, curr_index_):
+    return 0 <= curr_index_ < len(targets_)
 
 
-targets = list(map(int, input().split(' ')))
-shot_indices = []
+def reduce_and_increase(targets_, current_target_value_):
+    for i, target in enumerate(targets_):
+        if targets_[i] <= current_target_value_ and target != -1:
+            targets_[i] += current_target_value_
 
-while True:
-    command = input()
-    if command == 'End':
-        break
+        elif target > current_target_value_:
+            targets_[i] -= current_target_value_
 
-    idx = int(command)
-    if valid_index(targets, idx) and idx not in shot_indices:
-        value_ = targets[idx]
-        targets.pop(idx)
+    return targets_
 
-        for i, val in enumerate(targets):
-            if val >= 0:
-                if val > value_:
-                    targets[i] -= value_
-                else:
-                    targets[i] += value_
 
-        targets.insert(idx, -1)
-        shot_indices.append(idx)
+def main():
+    targets = list(map(int, input().split()))
+    shoot_targets_number = 0
+    while True:
+        command = input()
+        if command == "End":
+            break
 
-print(f"Shot targets: {len(shot_indices)} -> {' '.join(map(str, targets))}")
+        curr_index = int(command)
+        if is_valid_index(targets, curr_index) and targets[curr_index] != -1:
+            current_target_value = targets[curr_index]
+            targets[curr_index] = -1
+            shoot_targets_number += 1
+
+            targets = reduce_and_increase(targets, current_target_value)
+
+    print(f"Shot targets: {shoot_targets_number} -> {' '.join(map(str, targets))}")
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+# def valid_index(lst, indx):
+#     if 0 <= indx < len(lst):
+#         return True
+#     return None
+
+
+# targets = list(map(int, input().split(' ')))
+# shot_indices = []
+
+# while True:
+#     command = input()
+#     if command == 'End':
+#         break
+
+#     idx = int(command)
+#     if valid_index(targets, idx) and idx not in shot_indices:
+#         value_ = targets[idx]
+#         targets.pop(idx)
+
+#         for i, val in enumerate(targets):
+#             if val >= 0:
+#                 if val > value_:
+#                     targets[i] -= value_
+#                 else:
+#                     targets[i] += value_
+
+#         targets.insert(idx, -1)
+#         shot_indices.append(idx)
+
+# print(f"Shot targets: {len(shot_indices)} -> {' '.join(map(str, targets))}")
 
 
 ######################################################################################  CONDITION  ##########################################################################################################################################
