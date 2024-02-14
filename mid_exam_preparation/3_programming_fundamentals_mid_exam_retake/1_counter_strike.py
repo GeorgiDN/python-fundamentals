@@ -27,6 +27,54 @@ if __name__ == "__main__":
 
 
 
+
+
+# def take_integer_input():
+#     return int(input())
+
+
+# def take_input():
+#     return input()
+
+
+# def print_not_enough_energy_message(won_battles_, energy_):
+#     return print(f"Not enough energy! Game ends with {won_battles_} won battles and {energy_} energy")
+
+
+# def print_won_battles_message(won_battles_, energy_):
+#     return print(f"Won battles: {won_battles_}. Energy left: {energy_}")
+
+
+# def battle_simulation():
+#     won_battles = 0
+#     energy = take_integer_input()
+#     not_energy = False
+
+#     while True:
+#         command = take_input()
+#         if command == "End of battle":
+#             break
+
+#         distance = int(command)
+#         if energy - distance >= 0:
+#             energy -= distance
+#             won_battles += 1
+#             if won_battles % 3 == 0:
+#                 energy += won_battles
+#         else:
+#             not_energy = True
+#             print_not_enough_energy_message(won_battles, energy)
+#             break
+
+#     if not not_energy:
+#         print_won_battles_message(won_battles, energy)
+
+
+# battle_simulation()
+
+
+
+
 # won_battles = 0
 # energy = int(input())
 # not_energy = False
