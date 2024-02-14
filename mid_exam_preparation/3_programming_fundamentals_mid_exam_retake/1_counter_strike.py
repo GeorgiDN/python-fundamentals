@@ -1,25 +1,54 @@
-won_battles = 0
-energy = int(input())
-not_energy = False
+def main():
+    energy = int(input())
+    out_of_energy = False
+    won_battles = 0
+    while True:
+        command = input()
+        if command == "End of battle":
+            break
 
-while True:
-    command = input()
-    if command == "End of battle":
-        break
+        distance = int(command)
+        if energy >= distance:
+            energy -= distance
+            won_battles += 1
+            if won_battles % 3 == 0:
+                energy += won_battles
+        else:
+            print(f"Not enough energy! Game ends with {won_battles} won battles and {energy} energy")
+            out_of_energy = True
+            break
 
-    distance = int(command)
-    if energy - distance >= 0:
-        energy -= distance
-        won_battles += 1
-        if won_battles % 3 == 0:
-            energy += won_battles
-    else:
-        not_energy = True
-        print(f"Not enough energy! Game ends with {won_battles} won battles and {energy} energy")
-        break
+    if not out_of_energy:
+        print(f"Won battles: {won_battles}. Energy left: {energy}")
 
-if not not_energy:
-    print(f"Won battles: {won_battles}. Energy left: {energy}")
+
+if __name__ == "__main__":
+    main()
+
+
+
+# won_battles = 0
+# energy = int(input())
+# not_energy = False
+
+# while True:
+#     command = input()
+#     if command == "End of battle":
+#         break
+
+#     distance = int(command)
+#     if energy - distance >= 0:
+#         energy -= distance
+#         won_battles += 1
+#         if won_battles % 3 == 0:
+#             energy += won_battles
+#     else:
+#         not_energy = True
+#         print(f"Not enough energy! Game ends with {won_battles} won battles and {energy} energy")
+#         break
+
+# if not not_energy:
+#     print(f"Won battles: {won_battles}. Energy left: {energy}")
 
 
 
