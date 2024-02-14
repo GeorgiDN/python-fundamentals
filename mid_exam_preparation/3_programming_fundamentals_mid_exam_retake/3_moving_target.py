@@ -1,116 +1,233 @@
-def valid_index(lst, indx):
-    return 0 <= indx < len(lst)
+def is_valid(targets_, shoot_index_):
+    return 0 <= shoot_index_ < len(targets_)
 
 
-def valid_radius(targets, index, r):
-    return 0 <= index - r < len(targets) and index + r < len(targets)
+def shoot(targets_, shoot_index_, power_):
+    if is_valid(targets_, shoot_index_):
+        targets_[shoot_index_] -= power_
+        if targets_[shoot_index_] <= 0:
+            if len(targets_) > 1:
+                targets_.pop(shoot_index_)
+            else:
+                target = targets_.index(shoot_index_)
+                targets_.remove(target)
+
+    return targets_
 
 
-def shoot(targets, shoot_idx, power):
-    if valid_index(targets, shoot_idx):
-        targets[shoot_idx] -= power
-        if targets[shoot_idx] <= 0:
-            targets.pop(shoot_idx)
-    return targets
-
-
-def add(targets, add_idx, add_value):
-    if valid_index(targets, add_idx):
-        targets.insert(add_idx, add_value)
+def add(targets_, add_index_, value_):
+    if is_valid(targets_, add_index_):
+        targets_.insert(add_index_, value_)
     else:
         print("Invalid placement!")
-    return targets
+
+    return targets_
 
 
-def strike(targets, strike_idx, radius):
-    if valid_radius(targets, strike_idx, radius):
-        start = max(0, strike_idx - radius)
-        end = min(len(targets), strike_idx + radius + 1)
-        del targets[start:end]
+def strike(targets_, strike_index_, radius_):
+    if is_valid(targets_, strike_index_ - radius_) and is_valid(targets_, strike_index_ + radius_):
+        targets_ = targets_[:strike_index_ - radius_] + targets_[strike_index_ + radius_ + 1:]
     else:
         print("Strike missed!")
-    return targets
+
+    return targets_
 
 
-def main():
-    target_sequence = [int(x) for x in input().split(' ')]
-
+def moving_target():
+    targets = list(map(int, input().split()))
     while True:
         command = input()
-        if command == 'End':
+        if command == "End":
             break
 
-        info = command.split(" ")
-        action = info[0]
+        data = command.split()
+        current_command = data[0]
 
-        if action == "Shoot":
-            shoot_idx, power = int(info[1]), int(info[2])
-            target_sequence = shoot(target_sequence, shoot_idx, power)
+        if current_command == "Shoot":
+            shoot_index, power = int(data[1]), int(data[2])
+            targets = shoot(targets, shoot_index, power)
 
-        elif action == "Add":
-            add_idx, add_value = int(info[1]), int(info[2])
-            target_sequence = add(target_sequence, add_idx, add_value)
+        elif current_command == "Add":
+            add_index, value = int(data[1]), int(data[2])
+            targets = add(targets, add_index, value)
 
-        elif action == "Strike":
-            strike_idx, radius = int(info[1]), int(info[2])
-            target_sequence = strike(target_sequence, strike_idx, radius)
+        elif current_command == "Strike":
+            strike_index, radius = int(data[1]), int(data[2])
+            targets = strike(targets, strike_index, radius)
 
-    print('|'.join(map(str, target_sequence)))
-
-
-if __name__ == "__main__":
-    main()
+    if targets:
+        print("|".join(map(str, targets)))
 
 
+moving_target()
 
 
 
+##################################################################################################
+# def valid_index(lst, indx):
+#     return 0 <= indx < len(lst)
+# 
+# 
+# def valid_radius(targets, index, r):
+#     return 0 <= index - r < len(targets) and index + r < len(targets)
+# 
+# 
+# def shoot(targets, shoot_idx, power):
+#     if valid_index(targets, shoot_idx):
+#         targets[shoot_idx] -= power
+#         if targets[shoot_idx] <= 0:
+#             targets.pop(shoot_idx)
+#     return targets
+# 
+# 
+# def add(targets, add_idx, add_value):
+#     if valid_index(targets, add_idx):
+#         targets.insert(add_idx, add_value)
+#     else:
+#         print("Invalid placement!")
+#     return targets
+# 
+# 
+# def strike(targets, strike_idx, radius):
+#     if valid_radius(targets, strike_idx, radius):
+#         start = max(0, strike_idx - radius)
+#         end = min(len(targets), strike_idx + radius + 1)
+#         del targets[start:end]
+#     else:
+#         print("Strike missed!")
+#     return targets
+# 
+# 
+# def main():
+#     target_sequence = [int(x) for x in input().split(' ')]
+# 
+#     while True:
+#         command = input()
+#         if command == 'End':
+#             break
+# 
+#         info = command.split(" ")
+#         action = info[0]
+# 
+#         if action == "Shoot":
+#             shoot_idx, power = int(info[1]), int(info[2])
+#             target_sequence = shoot(target_sequence, shoot_idx, power)
+# 
+#         elif action == "Add":
+#             add_idx, add_value = int(info[1]), int(info[2])
+#             target_sequence = add(target_sequence, add_idx, add_value)
+# 
+#         elif action == "Strike":
+#             strike_idx, radius = int(info[1]), int(info[2])
+#             target_sequence = strike(target_sequence, strike_idx, radius)
+# 
+#     print('|'.join(map(str, target_sequence)))
+# 
+# 
+# if __name__ == "__main__":
+#     main()
+
+
+
+########################################################################################
 # def valid_index(lst, indx):
 #     if 0 <= indx < len(lst):
 #         return True
 #     return None
-
-
+# 
+# 
 # def valid_radius(targets, index, r):
 #     if 0 <= index - r < len(targets) and index + r < len(targets):
 #         return True
 #     return None
-
-
+# 
+# 
 # target_sequence = [int(x) for x in input().split(' ')]
-
+# 
 # while True:
 #     command = input()
 #     if command == 'End':
 #         break
-
+# 
 #     info = command.split(" ")
 #     action = info[0]
-
+# 
 #     if action == "Shoot":
 #         shoot_idx, power = int(info[1]), int(info[2])
 #         if valid_index(target_sequence, shoot_idx):
 #             target_sequence[shoot_idx] -= power
 #             if target_sequence[shoot_idx] <= 0:
 #                 target_sequence.pop(shoot_idx)
-
+# 
 #     elif action == "Add":
 #         add_idx, add_value = int(info[1]), int(info[2])
 #         if valid_index(target_sequence, add_idx):
 #             target_sequence.insert(add_idx, add_value)
 #         else:
 #             print("Invalid placement!")
-
+# 
 #     elif action == "Strike":
 #         strike_idx, radius = int(info[1]), int(info[2])
 #         if valid_radius(target_sequence, strike_idx, radius):
 #             for i in range(radius+2):
 #                 target_sequence.pop(strike_idx-1)
-
+# 
 #         else:
 #             print("Strike missed!")
-
+# 
 # print('|'.join(map(str, target_sequence)))
+
+
+
+
+#############################################################################################
+# def valid_index(lst, indx):
+#     if 0 <= indx < len(lst):
+#         return True
+#     return None
+# 
+# 
+# def valid_radius(targets, index, r):
+#     if 0 <= index - r < len(targets) and index + r < len(targets):
+#         return True
+#     return None
+# 
+# 
+# target_sequence = [int(x) for x in input().split(' ')]
+# 
+# while True:
+#     command = input()
+#     if command == 'End':
+#         break
+# 
+#     info = command.split(" ")
+#     action = info[0]
+# 
+#     if action == "Shoot":
+#         shoot_idx, power = int(info[1]), int(info[2])
+#         if valid_index(target_sequence, shoot_idx):
+#             target_sequence[shoot_idx] -= power
+#             if target_sequence[shoot_idx] <= 0:
+#                 target_sequence.pop(shoot_idx)
+# 
+#     elif action == "Add":
+#         add_idx, add_value = int(info[1]), int(info[2])
+#         if valid_index(target_sequence, add_idx):
+#             target_sequence.insert(add_idx, add_value)
+#         else:
+#             print("Invalid placement!")
+# 
+#     elif action == "Strike":
+#         strike_idx, radius = int(info[1]), int(info[2])
+#         if valid_radius(target_sequence, strike_idx, radius):
+#             start_idx = max(0, strike_idx - radius)
+#             end_idx = min(len(target_sequence), strike_idx + radius + 1)
+#             target_sequence = target_sequence[:start_idx] + target_sequence[end_idx:]
+#         else:
+#             print("Strike missed!")
+# 
+# print('|'.join(map(str, target_sequence)))
+
 
 
 
