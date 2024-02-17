@@ -1,6 +1,6 @@
 string_input = input().split(" ")
 
-decipher_string_1 = []
+decipher_string = []
 final_decipher_string = []
 
 number = ''
@@ -9,21 +9,21 @@ for word in string_input:
         if char.isdigit():
             number += char
         else:
-            decipher_string_1.append(char)
+            decipher_string.append(char)
 
     # find letter on the current number
     letter = chr(int(number))
     # insert letter in the beginning of string
-    decipher_string_1.insert(0, letter)
+    decipher_string.insert(0, letter)
     number = ''
     # swap second and last letter
-    sec_letter = decipher_string_1[1]
-    last_letter = decipher_string_1[-1]
-    decipher_string_1[1] = last_letter
-    decipher_string_1[-1] = sec_letter
-    final_decipher_string.extend(decipher_string_1)
+    sec_letter = decipher_string[1]
+    last_letter = decipher_string[-1]
+    decipher_string[1] = last_letter
+    decipher_string[-1] = sec_letter
+    final_decipher_string.extend(decipher_string)
     final_decipher_string.extend(' ')
-    decipher_string_1 = []
+    decipher_string = []
 
 print(''.join(final_decipher_string))
 
