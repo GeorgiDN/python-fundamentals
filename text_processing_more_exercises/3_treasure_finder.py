@@ -1,105 +1,140 @@
 import re
 
 
-def find_message(decrypted_text_):
-    matches = re.findall(r"[&](\w+)[&]", decrypted_text_)
-    return matches[0] if matches else None
+class TreasureFinder:
+    def __init__(self, key_numbers):
+        self.key_numbers = key_numbers
+        self.info_about_treasure = []
+
+    def find_treasure(self):
+        while True:
+            decrypted_text = ''
+            command = input()
+            if command == "find":
+                break
+
+            text = command
+            for i in range(len(text)):
+                key = self.key_numbers[i % len(self.key_numbers)]
+                char = text[i]
+                ascii_number = ord(char)
+                decrypted_char = chr(ascii_number - key)
+                decrypted_text += decrypted_char
+
+            current_type = self._find_message(decrypted_text)
+            coordinates = self._find_coordinates(decrypted_text)
+
+            self.info_about_treasure.append(f"Found {current_type} at {coordinates}\n")
+
+        return ''.join(self.info_about_treasure)
+
+    #### Helper methods
+    def _find_message(self, decrypted_text_):
+        matches = re.findall(r"[&](\w+)[&]", decrypted_text_)
+        return matches[0] if matches else None
+
+    def _find_coordinates(self, decrypted_text_):
+        matches = re.findall(r"[<](\w+)[>]", decrypted_text_)
+        return matches[0] if matches else None
 
 
-def find_coordinates(decrypted_text_):
-    matches = re.findall(r"[<](\w+)[>]", decrypted_text_)
-    return matches[0] if matches else None
+numbers_with_key = [int(x) for x in input().split()]
+treasure_finder = TreasureFinder(numbers_with_key)
+print(treasure_finder.find_treasure())
 
 
-def find_treasure(key_numbers_):
-    result = []
-    while True:
-        decrypted_text = ''
-        command = input()
-        if command == "find":
-            break
-
-        text = command
-        for i in range(len(text)):
-            key = key_numbers_[i % len(key_numbers_)]
-            char = text[i]
-            ascii_number = ord(char)
-            decrypted_char = chr(ascii_number - key)
-            decrypted_text += decrypted_char
-
-        current_type = find_message(decrypted_text)
-        coordinates = find_coordinates(decrypted_text)
-
-        result.append(f"Found {current_type} at {coordinates}\n")
-
-    return ''.join(result)
-
-
-key_numbers = [int(x) for x in input().split()]
-treasure_found = find_treasure(key_numbers)
-print(treasure_found)
-
-
-
+#######################################################################################################################################
 # import re
 # 
 # 
-# def find_message(decrypted_text_):
-#     matches = re.findall(r"[&](\w+)[&]", decrypted_text_)
+# def get_name(text):
+#     matches = re.findall(r"[@](\w+)[|]", text)
 #     return matches[0] if matches else None
 # 
 # 
-# def find_coordinates(decrypted_text_):
-#     matches = re.findall(r"[<](\w+)[>]", decrypted_text_)
+# def get_age(text):
+#     matches = re.findall(r"[#](\d+)[*]", text)
 #     return matches[0] if matches else None
 # 
 # 
-# key_numbers = [int(x) for x in input().split()]
+# def extract_person_information(rows_):
+#     persons_information_ = {}
+#     for _ in range(rows_):
+#         person_info = input()
+#         name = get_name(person_info)
+#         age = get_age(person_info)
+# 
+#         persons_information_[name] = age
+# 
+#     return persons_information_
 # 
 # 
-# while True:
-#     decrypted_text = ''
-#     command = input()
-#     if command == "find":
-#         break
+# def print_person_information(persons_information_):
+#     for curr_name, curr_age in persons_information_.items():
+#         print(f"{curr_name} is {curr_age} years old.")
 # 
-#     text = command
-#     for i in range(len(text)):
-#         key = key_numbers[i % len(key_numbers)]
-#         char = text[i]
-#         ascii_number = ord(char)
-#         decrypted_char = chr(ascii_number - key)
-#         decrypted_text += decrypted_char
 # 
-#     current_type = find_message(decrypted_text)
-#     coordinates = find_coordinates(decrypted_text)
-# 
-#     print(f"Found {current_type} at {coordinates}")
+# rows = int(input())
+# persons_information = extract_person_information(rows)
+# print_person_information(persons_information)
 
 
 
 
 
-# keys_sequence = list(map(int, input().split()))
-# string_sequence = input()
-# result = []
+#############################################################################################################################################
+# import re
+#
+#
+# def get_name(text):
+#     pattern = "([@])([A-Za-z]+)([\|])"
+#     matches = re.findall(pattern, text)
+#     name_ = matches[0][1]
+#     if matches:
+#         return name_
+#
+#
+# def get_age(text):
+#     pattern = "([#])([\d]+)([\*])"
+#     matches = re.findall(pattern, text)
+#     age_ = matches[0][1]
+#     if matches:
+#         return age_
+#
+#
+# def extract_person_information(persons_information_, rows_):
+#     for _ in range(rows_):
+#         person_info = input()
+#         name = get_name(person_info)
+#         age = get_age(person_info)
+#         persons_information_[name] = age
+#
+#     return persons_information_
+#
+#
+# def print_person_information(persons_information_):
+#     for curr_name, curr_age in persons_information_.items():
+#         print(f"{curr_name} is {curr_age} years old.")
+#
+#
+# rows = int(input())
+# persons_information = {}
+# persons_information = extract_person_information(persons_information, rows)
+# print_person_information(persons_information)
 
-# while string_sequence != 'find':
-#     key_index = 0
-#     for char in string_sequence:
-#         key = keys_sequence[key_index]
-#         result.append(chr(ord(char) - key))
-#         key_index = (key_index + 1) % len(keys_sequence)
-#     decoded_string = ''.join(result)
 
-#     for i in range(1):
-#         start_index_type = decoded_string.index('&') + 1
-#         end_index_type = decoded_string.index('&', start_index_type)
-#         type = decoded_string[start_index_type:end_index_type]
-#         start_index_coordinates = decoded_string.index('<') + 1
-#         end_index_coordinates = decoded_string.index('>')
-#         coordinates = decoded_string[start_index_coordinates:end_index_coordinates]
-#         print(f"Found {type} at {coordinates}")
-#         result.clear()
 
-#     string_sequence = input()
+#######################################################################################################################################
+# rows = int(input())
+# for i in range(rows):
+#     text = input()
+#
+#     start_index_name = text.index('@') + 1
+#     end_index_name = text.index('|')
+#     start_index_age = text.index('#') + 1
+#     end_index_age = text.index('*')
+#
+#     name = text[start_index_name:end_index_name]
+#     age = text[start_index_age:end_index_age]
+#
+#     print(f"{name} is {age} years old.")
