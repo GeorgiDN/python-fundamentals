@@ -1,37 +1,51 @@
 import re
 
-participants = input().split(", ")
-race_results = {}
-info = input()
-while info != "end of race":
-    name_pattern = r"[A-Za-z]"
-    distance_pattern = r"[0-9]"
-    name_match = re.findall(name_pattern, info)
-    distance_match = re.findall(distance_pattern, info)
-    name = "".join(name_match)
-    distance = sum([int(x) for x in distance_match])
-    if name in participants:
-        if name not in race_results:
-            race_results[name] = distance
-        else:
-            race_results[name] += distance
-    info = input()
-    
-sorted_results = dict(sorted(race_results.items(), key=lambda x: -x[1]))
-rank = 0
-for name in sorted_results:
-    rank += 1
-    if rank > 3:
-        break
-    if rank == 1:
-        current_rank = "1st"
-    elif rank == 2:
-        current_rank = "2nd"
-    elif rank == 3:
-        current_rank = "3rd"
-    print(f"{current_rank} place: {name}")
+
+def extract_name_from_string(data_):
+    pattern = r"[A-Za-z]+"
+    matches = re.findall(pattern, data_)
+    return ''.join(matches) if matches else None
 
 
+def extract_numbers_from_string(data_):
+    pattern = r"\d"
+    matches = re.findall(pattern, data_)
+    return sum(map(int, matches)) if matches else 0
+
+
+def show_ranks(sorted_result_):
+    final_results = []
+    ranks = {1: "1st", 2: "2nd", 3: "3rd"}
+    rank = 1
+    for participant in sorted_result_:
+        if rank > 3:
+            break
+        final_results.append(f"{ranks[rank]} place: {participant}\n")
+        rank += 1
+
+    return print(''.join(final_results))
+
+
+def race():
+    participants = input().split(", ")
+    results = {}
+    while True:
+        data = input()
+        if data == "end of race":
+            break
+
+        name = extract_name_from_string(data)
+        distance = extract_numbers_from_string(data)
+        if name in participants:
+            if name not in results:
+                results[name] = 0
+            results[name] += distance
+
+    sorted_result = dict(sorted(results.items(), key=lambda x: -x[1]))
+    show_ranks(sorted_result)
+
+
+race()
 
 
 
