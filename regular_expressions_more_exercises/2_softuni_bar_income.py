@@ -21,7 +21,7 @@ def soft_uni_bar_income():
         data = input()
         if data == "end of shift":
             break
-        pattern = r"(%[A-Z]{1}[a-z]+\%)([^\|\$\%\.])*(<[\w]+>)([^\|\$\%\.])*(\|\d+\|)([^\|\$\%\.])*(\d+(\.\d+)*\$)"
+        pattern = r"(%[A-Z][a-z]+\%)([^\|\$\%\.])*(<[\w]+>)([^\|\$\%\.])*(\|\d+\|)([^\|\$\%\.])*(\d+(\.\d+)*\$)"
         matches = re.findall(pattern, data)
         if matches:
             cost = extract_name_and_calculate_cost(data)
@@ -31,6 +31,7 @@ def soft_uni_bar_income():
 
 
 soft_uni_bar_income()
+
 
 
 
