@@ -30,10 +30,10 @@ def remove(list_of_lessons, title, lessons_with_exercise):
 
 def swap(list_of_lessons, title1, title2, lessons_with_exercise):
     if title1 in lessons_with_exercise and title2 in lessons_with_exercise:
-        # first lesson
+        # first lesson and exercise
         first_swap_index = list_of_lessons.index(title1)
         exercise_first_index = list_of_lessons.index(title1) + 1
-        # second lesson
+        # second lesson and exercise
         last_swap_index = list_of_lessons.index(title2)
         exercise_last_index = list_of_lessons.index(title2) + 1
         # swap lesson and exercise
@@ -135,6 +135,7 @@ list_schedule = input().split(", ")
 course_planning(list_schedule)
 for index_, course in enumerate(list_schedule):
     print(f"{index_ + 1}.{course}")
+
 
 
 
