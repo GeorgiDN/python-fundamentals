@@ -18,13 +18,22 @@ def user_side(force_users, user, side, reg_users):
         if user in reg_users:
             for curr_side, data_ in force_users.items():
                 if data_:
-                    for usr in data_:
-                        if usr == user:
+                    for curr_user in data_:
+                        if curr_user == user:
                             force_users[curr_side].remove(user)
                             force_users[side].append(user)
 
     print(f"{user} joins the {side} side!")
     return force_users, reg_users
+
+
+def print_result(force_users_info):
+    for current_side, users_data in force_users_info.items():
+        if users_data:
+            members = len(users_data)
+            print(f"Side: {current_side}, Members: {members}")
+            for current_user in users_data:
+                print(f"! {current_user}")
 
 
 def force_book():
@@ -46,12 +55,7 @@ def force_book():
             force_user, force_side = info[0], info[1]
             force_users_info, registered_users = user_side(force_users_info, force_user, force_side, registered_users)
 
-    for current_side, users_data in force_users_info.items():
-        if users_data:
-            members = len(users_data)
-            print(f"Side: {current_side}, Members: {members}")
-            for current_user in users_data:
-                print(f"! {current_user}")
+    print_result(force_users_info)
 
 
 force_book()
