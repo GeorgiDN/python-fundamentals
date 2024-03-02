@@ -1,42 +1,72 @@
-def check_null_values(dragon_damage, dragon_health, dragon_armor):
-    if dragon_damage == "null":
-        dragon_damage = 45
-    if dragon_health == "null":
-        dragon_health = 250
-    if dragon_armor == "null":
-        dragon_armor = 10
-    return dragon_damage, dragon_health, dragon_armor
+def check_values(damage, health, armour):
+    if not damage.isdigit():
+        damage = 45
+    if not health.isdigit():
+        health = 250
+    if not armour.isdigit():
+        armour = 10
+
+    return int(damage), int(health), int(armour)
 
 
-dragons = {}
-number_of_entries = int(input())
-for entry in range(number_of_entries):
-    type, name, damage, health, armor = input().split()
-    damage, health, armor = check_null_values(damage, health, armor)
-    if type not in dragons:
-        dragons[type] = {"total damage": 0, "total health": 0, "total armor": 0}
-    if name not in dragons[type]:
-        dragons[type][name] = {}
+def take_the_information(dragons_data, color, name, damage, health, armour):
+    if color not in dragons_data:
+        dragons_data[color] = {}
+
+    if name not in dragons_data[color]:
+        dragons_data[color][name] = []
+        dragons_data[color][name].append(damage)
+        dragons_data[color][name].append(health)
+        dragons_data[color][name].append(armour)
+
     else:
-        dragons[type]["total damage"] -= dragons[type][name]["damage"]
-        dragons[type]["total health"] -= dragons[type][name]["health"]
-        dragons[type]["total armor"] -= dragons[type][name]["armor"]
-    dragons[type][name]["damage"] = int(damage)
-    dragons[type][name]["health"] = int(health)
-    dragons[type][name]["armor"] = int(armor)
-    dragons[type]["total damage"] += int(damage)
-    dragons[type]["total health"] += int(health)
-    dragons[type]["total armor"] += int(armor)
+        if name in dragons_data[color]:
+            dragons_data[color][name] = []
+            dragons_data[color][name].append(damage)
+            dragons_data[color][name].append(health)
+            dragons_data[color][name].append(armour)
 
-statistic_keys = ["total damage", "total health", "total armor"]
+    return dragons_data
 
-for dragon_type, dragon in dragons.items():
-    number_of_dragons = len(dragons[dragon_type]) - 3
-    average_damage = dragons[dragon_type]["total damage"] / number_of_dragons
-    average_health = dragons[dragon_type]["total health"] / number_of_dragons
-    average_armor = dragons[dragon_type]["total armor"] / number_of_dragons
-    print(f"{dragon_type}::({average_damage:.2f}/{average_health:.2f}/{average_armor:.2f})")
-    sorted_dragons = dict(sorted(dragon.items(), key=lambda x: x[0]))
-    for key, value in sorted_dragons.items():
-        if key not in statistic_keys:
-            print(f"-{key} -> damage: {value['damage']}, health: {value['health']}, armor: {value['armor']}")
+
+def print_result(dragons_data):
+    for type_, names_data in dragons_data.items():
+        damages = []
+        healths = []
+        armours = []
+        name_info = []
+
+        for curr_name, info in names_data.items():
+            curr_damage, curr_health, curr_armour = info[0], info[1], info[2]
+            damages.append(curr_damage)
+            healths.append(curr_health)
+            armours.append(curr_armour)
+            name_info.append(f"-{curr_name} -> damage: {curr_damage}, health: {curr_health}, armor: {curr_armour}")
+
+        average_damage = sum(damages) / len(damages)
+        average_health = sum(healths) / len(healths)
+        average_armour = sum(armours) / len(armours)
+
+        print(f"{type_}::({average_damage:.2f}/{average_health:.2f}/{average_armour:.2f})")
+        print('\n'.join(name_info))
+
+
+def main():
+    dragons_data = {}
+    rows = int(input())
+
+    for _ in range(rows):
+        data = input().split()
+        color, name, damage, health, armour = data[0], data[1], data[2], data[3], data[4]
+        damage, health, armour = check_values(damage, health, armour)
+        dragons_data = take_the_information(dragons_data, color, name, damage, health, armour)
+
+    for color, dragon_names in dragons_data.items():
+        dragons_data[color] = dict(sorted(dragon_names.items()))
+
+    print_result(dragons_data)
+
+
+if __name__ == "__main__":
+    main()
+
