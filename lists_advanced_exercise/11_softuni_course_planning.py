@@ -15,91 +15,66 @@ def insert_lesson_title(list_of_lessons, title, idx):
     return list_of_lessons
 
 
-def remove(list_of_lessons, title, lessons_with_exercise):
+def remove(list_of_lessons, title):
     if title in list_of_lessons:
-        if title in lessons_with_exercise:
-            title_exercice_index = list_of_lessons.index(title) + 1
-            list_of_lessons.pop(title_exercice_index)
+        list_of_lessons.remove(title)
+        lesson_exercise = f'{title}-Exercise'
+        if lesson_exercise in list_of_lessons:
             list_of_lessons.remove(title)
-            lessons_with_exercise.remove(title)
-        else:
-            list_of_lessons.remove(title)
-
-    return list_of_lessons, lessons_with_exercise
-
-
-def swap(list_of_lessons, title1, title2, lessons_with_exercise):
-    if title1 in lessons_with_exercise and title2 in lessons_with_exercise:
-        # first lesson and exercise
-        first_swap_index = list_of_lessons.index(title1)
-        exercise_first_index = list_of_lessons.index(title1) + 1
-        # second lesson and exercise
-        last_swap_index = list_of_lessons.index(title2)
-        exercise_last_index = list_of_lessons.index(title2) + 1
-        # swap lesson and exercise
-        list_of_lessons[first_swap_index] = title2
-        list_of_lessons[exercise_first_index] = f"{title2}-Exercise"
-        list_of_lessons[last_swap_index] = title1
-        list_of_lessons[exercise_last_index] = f"{title1}-Exercise"
-
-    elif title1 in lessons_with_exercise:
-        # take the elements
-        first_swap_index = list_of_lessons.index(title1)
-        index_exercise = list_of_lessons.index(title1) + 1
-        last_swap_index = list_of_lessons.index(title2)
-        # swap lessons
-        list_of_lessons[first_swap_index] = title2
-        list_of_lessons[last_swap_index] = title1
-        # swap exercise
-        curr_exercise = list_of_lessons.pop(index_exercise)
-        if list_of_lessons.index(title1) + 1 >= len(list_of_lessons):
-            list_of_lessons.append(curr_exercise)
-        else:
-            list_of_lessons.insert(list_of_lessons.index(title1) + 1, curr_exercise)
-
-    elif title2 in lessons_with_exercise:
-        first_swap_index = list_of_lessons.index(title1)
-        last_swap_index = list_of_lessons.index(title2)
-        index_exercise = list_of_lessons.index(title2) + 1
-        # swap lessons
-        list_of_lessons[first_swap_index] = title2
-        list_of_lessons[last_swap_index] = title1
-        # swap exercise
-        curr_exercise = list_of_lessons.pop(index_exercise)
-        if list_of_lessons.index(title2) + 1 >= len(list_of_lessons):
-            list_of_lessons.append(curr_exercise)
-        else:
-            list_of_lessons.insert(list_of_lessons.index(title2) + 1, curr_exercise)
-
-    else:
-        if title1 in list_of_lessons and title2 in list_of_lessons:
-            first_swap_index = list_of_lessons.index(title1)
-            last_swap_index = list_of_lessons.index(title2)
-            list_of_lessons[first_swap_index] = title2
-            list_of_lessons[last_swap_index] = title1
     return list_of_lessons
 
 
-def exercise(list_of_lessons, title, lessons_with_exercise):
+def swap(list_of_lessons, title1, title2):
+    if title1 in list_of_lessons and title2 in list_of_lessons:
+        first_lesson_index = list_of_lessons.index(title1)
+        second_lesson_index = list_of_lessons.index(title2)
+        # Swap the lessons
+        list_of_lessons[first_lesson_index], list_of_lessons[second_lesson_index] = \
+            list_of_lessons[second_lesson_index], list_of_lessons[first_lesson_index]
+        first_lesson_exercise = f'{title1}-Exercise'
+        second_lesson_exercise = f'{title2}-Exercise'
+
+        if first_lesson_exercise in list_of_lessons:
+            list_of_lessons.remove(first_lesson_exercise)
+            if second_lesson_index + 1 == len(list_of_lessons):
+                list_of_lessons.append(first_lesson_exercise)
+            else:
+                list_of_lessons.insert(second_lesson_index + 1, first_lesson_exercise)
+
+        if second_lesson_exercise in list_of_lessons:
+            list_of_lessons.remove(second_lesson_exercise)
+            if first_lesson_index + 1 == len(list_of_lessons):
+                list_of_lessons.append(second_lesson_exercise)
+            else:
+                list_of_lessons.insert(first_lesson_index + 1, second_lesson_exercise)
+
+    return list_of_lessons
+
+
+def exercise(list_of_lessons, title):
     if title not in list_of_lessons:
         list_of_lessons.append(title)
-        list_of_lessons.append(f"{title}-Exercise")
-        lessons_with_exercise.append(title)
-        return list_of_lessons, lessons_with_exercise
+        lesson_exercise = f'{title}-Exercise'
+        lesson_title_index = list_of_lessons.index(title)
 
+        if lesson_title_index + 1 < len(list_of_lessons):
+            list_of_lessons.insert(lesson_title_index + 1, lesson_exercise)
+        else:
+            list_of_lessons.append(lesson_exercise)
+            
     else:
-        if title not in lessons_with_exercise:
-            if list_of_lessons.index(title) + 1 < len(list_of_lessons):
-                list_of_lessons.insert(list_of_lessons.index(title) + 1, f"{title}-Exercise")
+        lesson_title_index = list_of_lessons.index(title)
+        lesson_exercise = f'{title}-Exercise'
+        if lesson_exercise not in list_of_lessons:
+            if lesson_title_index + 1 < len(list_of_lessons):
+                list_of_lessons.insert(lesson_title_index + 1, lesson_exercise)
             else:
-                list_of_lessons.append(f"{title}-Exercise")
-                lessons_with_exercise.append(title)
+                list_of_lessons.append(lesson_exercise)
 
-    return list_of_lessons, lessons_with_exercise
+    return list_of_lessons
 
 
 def course_planning(schedule):
-    lesson_titles_with_exercises = []
     while True:
         command = input()
         if command == "course start":
@@ -118,15 +93,15 @@ def course_planning(schedule):
 
         elif action == "Remove":
             lesson_title_to_remove = info[1]
-            schedule, lesson_titles_with_exercises = remove(schedule, lesson_title_to_remove, lesson_titles_with_exercises)
+            schedule = remove(schedule, lesson_title_to_remove)
 
         elif action == "Swap":
             lesson_title1, lesson_title2 = info[1], info[2]
-            schedule = swap(schedule, lesson_title1, lesson_title2, lesson_titles_with_exercises)
+            schedule = swap(schedule, lesson_title1, lesson_title2)
 
         elif action == "Exercise":
             lesson_title_exercise = info[1]
-            schedule, lesson_titles_with_exercises = exercise(schedule, lesson_title_exercise, lesson_titles_with_exercises)
+            schedule = exercise(schedule, lesson_title_exercise)
 
     return schedule
 
@@ -135,6 +110,148 @@ list_schedule = input().split(", ")
 course_planning(list_schedule)
 for index_, course in enumerate(list_schedule):
     print(f"{index_ + 1}.{course}")
+
+
+
+
+
+# def is_valid(lst, idx):
+#     return 0 <= idx < len(lst)
+
+
+# def add_lesson(list_of_lessons, title):
+#     if title not in list_of_lessons:
+#         list_of_lessons.append(title)
+#     return list_of_lessons
+
+
+# def insert_lesson_title(list_of_lessons, title, idx):
+#     if is_valid(list_of_lessons, idx):
+#         if title not in list_of_lessons:
+#             list_of_lessons.insert(idx, title)
+#     return list_of_lessons
+
+
+# def remove(list_of_lessons, title, lessons_with_exercise):
+#     if title in list_of_lessons:
+#         if title in lessons_with_exercise:
+#             title_exercice_index = list_of_lessons.index(title) + 1
+#             list_of_lessons.pop(title_exercice_index)
+#             list_of_lessons.remove(title)
+#             lessons_with_exercise.remove(title)
+#         else:
+#             list_of_lessons.remove(title)
+
+#     return list_of_lessons, lessons_with_exercise
+
+
+# def swap(list_of_lessons, title1, title2, lessons_with_exercise):
+#     if title1 in lessons_with_exercise and title2 in lessons_with_exercise:
+#         # first lesson and exercise
+#         first_swap_index = list_of_lessons.index(title1)
+#         exercise_first_index = list_of_lessons.index(title1) + 1
+#         # second lesson and exercise
+#         last_swap_index = list_of_lessons.index(title2)
+#         exercise_last_index = list_of_lessons.index(title2) + 1
+#         # swap lesson and exercise
+#         list_of_lessons[first_swap_index] = title2
+#         list_of_lessons[exercise_first_index] = f"{title2}-Exercise"
+#         list_of_lessons[last_swap_index] = title1
+#         list_of_lessons[exercise_last_index] = f"{title1}-Exercise"
+
+#     elif title1 in lessons_with_exercise:
+#         # take the elements
+#         first_swap_index = list_of_lessons.index(title1)
+#         index_exercise = list_of_lessons.index(title1) + 1
+#         last_swap_index = list_of_lessons.index(title2)
+#         # swap lessons
+#         list_of_lessons[first_swap_index] = title2
+#         list_of_lessons[last_swap_index] = title1
+#         # swap exercise
+#         curr_exercise = list_of_lessons.pop(index_exercise)
+#         if list_of_lessons.index(title1) + 1 >= len(list_of_lessons):
+#             list_of_lessons.append(curr_exercise)
+#         else:
+#             list_of_lessons.insert(list_of_lessons.index(title1) + 1, curr_exercise)
+
+#     elif title2 in lessons_with_exercise:
+#         first_swap_index = list_of_lessons.index(title1)
+#         last_swap_index = list_of_lessons.index(title2)
+#         index_exercise = list_of_lessons.index(title2) + 1
+#         # swap lessons
+#         list_of_lessons[first_swap_index] = title2
+#         list_of_lessons[last_swap_index] = title1
+#         # swap exercise
+#         curr_exercise = list_of_lessons.pop(index_exercise)
+#         if list_of_lessons.index(title2) + 1 >= len(list_of_lessons):
+#             list_of_lessons.append(curr_exercise)
+#         else:
+#             list_of_lessons.insert(list_of_lessons.index(title2) + 1, curr_exercise)
+
+#     else:
+#         if title1 in list_of_lessons and title2 in list_of_lessons:
+#             first_swap_index = list_of_lessons.index(title1)
+#             last_swap_index = list_of_lessons.index(title2)
+#             list_of_lessons[first_swap_index] = title2
+#             list_of_lessons[last_swap_index] = title1
+#     return list_of_lessons
+
+
+# def exercise(list_of_lessons, title, lessons_with_exercise):
+#     if title not in list_of_lessons:
+#         list_of_lessons.append(title)
+#         list_of_lessons.append(f"{title}-Exercise")
+#         lessons_with_exercise.append(title)
+#         return list_of_lessons, lessons_with_exercise
+
+#     else:
+#         if title not in lessons_with_exercise:
+#             if list_of_lessons.index(title) + 1 < len(list_of_lessons):
+#                 list_of_lessons.insert(list_of_lessons.index(title) + 1, f"{title}-Exercise")
+#             else:
+#                 list_of_lessons.append(f"{title}-Exercise")
+#                 lessons_with_exercise.append(title)
+
+#     return list_of_lessons, lessons_with_exercise
+
+
+# def course_planning(schedule):
+#     lesson_titles_with_exercises = []
+#     while True:
+#         command = input()
+#         if command == "course start":
+#             break
+
+#         info = command.split(":")
+#         action = info[0]
+
+#         if action == "Add":
+#             lesson_title_to_add = info[1]
+#             schedule = add_lesson(schedule, lesson_title_to_add)
+
+#         elif action == "Insert":
+#             lesson_title_to_insert, index_to_insert = info[1], int(info[2])
+#             schedule = insert_lesson_title(schedule, lesson_title_to_insert, index_to_insert)
+
+#         elif action == "Remove":
+#             lesson_title_to_remove = info[1]
+#             schedule, lesson_titles_with_exercises = remove(schedule, lesson_title_to_remove, lesson_titles_with_exercises)
+
+#         elif action == "Swap":
+#             lesson_title1, lesson_title2 = info[1], info[2]
+#             schedule = swap(schedule, lesson_title1, lesson_title2, lesson_titles_with_exercises)
+
+#         elif action == "Exercise":
+#             lesson_title_exercise = info[1]
+#             schedule, lesson_titles_with_exercises = exercise(schedule, lesson_title_exercise, lesson_titles_with_exercises)
+
+#     return schedule
+
+
+# list_schedule = input().split(", ")
+# course_planning(list_schedule)
+# for index_, course in enumerate(list_schedule):
+#     print(f"{index_ + 1}.{course}")
 
 
 
