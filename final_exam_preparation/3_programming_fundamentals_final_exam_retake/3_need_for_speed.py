@@ -11,8 +11,8 @@ def drive(cars_data, car, distance, fuel):
     if fuel > cars_data[car][1]:
         print("Not enough fuel to make that ride")
     else:
-        cars_data[car][0] += distance
-        cars_data[car][1] -= fuel
+        cars_data[car][0] += distance   # Increase mileage
+        cars_data[car][1] -= fuel  # Reduce fuel
         print(f"{car} driven for {distance} kilometers. {fuel} liters of fuel consumed.")
 
     if cars_data[car][0] >= 100000:
