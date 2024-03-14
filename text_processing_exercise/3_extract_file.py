@@ -2,14 +2,30 @@ import re
 
 file_path = input()
 
-pattern = re.compile(r'\\([^\\]+)\.([^.]+)$')
-matches = pattern.findall(file_path)
+pattern = r'\\([^\\]+)\.([^.]+)$'
+matches = re.findall(pattern, file_path)
 
 if matches:
     file_name, file_extension = matches[0]
 
     print(f"File name: {file_name}")
     print(f"File extension: {file_extension}")
+
+
+
+# import re
+
+# file_path = input()
+
+# pattern = re.compile(r'\\([^\\]+)\.([^.]+)$')
+# matches = pattern.findall(file_path)
+
+# if matches:
+#     file_name, file_extension = matches[0]
+
+#     print(f"File name: {file_name}")
+#     print(f"File extension: {file_extension}")
+
 
 
 
