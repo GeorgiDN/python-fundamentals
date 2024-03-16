@@ -35,6 +35,7 @@ print_person_information(persons_information)
 
 
 
+
 #########################################################################################################
 # import re
 #
@@ -79,7 +80,7 @@ print_person_information(persons_information)
 
 #################################################################################
 # rows = int(input())
-# for i in range(rows):
+# for _ in range(rows):
 #     text = input()
 #
 #     start_index_name = text.index('@') + 1
@@ -91,3 +92,12 @@ print_person_information(persons_information)
 #     age = text[start_index_age:end_index_age]
 #
 #     print(f"{name} is {age} years old.")
+
+
+
+###################################################################################
+# rows = int(input())
+# for _ in range(rows):
+#     text = input()
+# 
+#     print(f"{text[text.index('@') + 1: text.index('|')]} is {text[text.index('#') + 1:text.index('*')]} years old.")
