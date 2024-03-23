@@ -1,22 +1,21 @@
 import re
 
-barcode_count = int(input())
-validation_pattern = r"^@#+([A-Z][A-Za-z0-9]{4,}[A-Z])@#+$"
-for _ in range(barcode_count):
+barcodes_count = int(input())
+pattern = r'(@[#]+)([A-Z][a-zA-Z0-9]{4,}[A-Z])(@[#]+)'
+
+for _ in range(barcodes_count):
     barcode = input()
-    validation = re.findall(validation_pattern, barcode)
-    validation = ''.join(validation)
-    if validation:
-        code_pattern = r"\d+"
-        match = re.findall(code_pattern, validation)
-        if match:
-            product_group = "".join(match)
+    matches = re.findall(pattern, barcode)
+    if matches:
+        code_pattern = r'\d+'
+        digits_matches = re.findall(code_pattern, barcode)
+        if digits_matches:
+            product_group = ''.join(digits_matches)
         else:
-            product_group = "00"
+            product_group = '00'
         print(f"Product group: {product_group}")
     else:
         print("Invalid barcode")
-
 
 
 # import re
