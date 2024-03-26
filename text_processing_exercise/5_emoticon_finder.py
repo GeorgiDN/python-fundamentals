@@ -12,12 +12,11 @@ for emoticon in emoticons:
 
 
 
-# 80/100
 # import re
-#
+
 # text = input()
-# pattern = ":(.)"
-#
-# matches = re.finditer(pattern, text)
+# pattern = r"(?<=:)."
+
+# matches = re.findall(pattern, text)
 # for match in matches:
-#     print(f":{match.group(1)}")
+#     print(f":{match}")
