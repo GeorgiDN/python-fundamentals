@@ -20,7 +20,7 @@ def remove(list_of_lessons, title):
         list_of_lessons.remove(title)
         lesson_exercise = f'{title}-Exercise'
         if lesson_exercise in list_of_lessons:
-            list_of_lessons.remove(title)
+            list_of_lessons.remove(lesson_exercise)
     return list_of_lessons
 
 
@@ -61,7 +61,7 @@ def exercise(list_of_lessons, title):
             list_of_lessons.insert(lesson_title_index + 1, lesson_exercise)
         else:
             list_of_lessons.append(lesson_exercise)
-            
+
     else:
         lesson_title_index = list_of_lessons.index(title)
         lesson_exercise = f'{title}-Exercise'
