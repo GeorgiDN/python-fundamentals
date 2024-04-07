@@ -73,3 +73,5 @@ Online judge system - https://judge.softuni.org/
 ➡[Final exam preparation](https://github.com/GeorgiDN/python-fundamentals/tree/main/final_exam_preparation)
 
 ➡[Regular mid exam](https://github.com/GeorgiDN/python-fundamentals/tree/main/regular_mid_exam)
+
+➡[Regular final exam](https://github.com/GeorgiDN/python-fundamentals/tree/main/regular_final_exam)
