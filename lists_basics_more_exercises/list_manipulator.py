@@ -1,8 +1,8 @@
 import sys
 
 
-def is_valid_index(lst, indx):
-    return 0 <= indx < len(lst)
+def is_valid_index(lst, idx):
+    return 0 <= idx < len(lst)
 
 
 def exchange_list(lst, index):
@@ -79,7 +79,7 @@ def first_count_even(lst, countt):
     if countt > len(lst):
         return "Invalid count"
     matches = []
-    for j, num in enumerate(lst):
+    for num in lst:
         if num % 2 == 0:
             matches.append(num)
             if len(matches) == countt:
@@ -91,7 +91,7 @@ def first_count_odd(lst, countt):
     if countt > len(lst):
         return "Invalid count"
     matches = []
-    for j, num in enumerate(lst):
+    for num in lst:
         if num % 2 != 0:
             matches.append(num)
             if len(matches) == countt:
@@ -103,7 +103,7 @@ def last_count_even(lst, countt):
     if countt > len(lst):
         return "Invalid count"
     matches = []
-    for j, num in enumerate(reversed(lst)):
+    for num in reversed(lst):
         if num % 2 == 0:
             matches.append(num)
             if len(matches) == countt:
@@ -115,7 +115,7 @@ def last_count_odd(lst, countt):
     if countt > len(lst):
         return "Invalid count"
     matches = []
-    for j, num in enumerate(reversed(lst)):
+    for num in (reversed(lst)):
         if num % 2 != 0:
             matches.append(num)
             if len(matches) == countt:
@@ -134,8 +134,8 @@ while True:
     action = info[0]
 
     if action == "exchange":
-        index_ = int(info[1])
-        manipulated_list = exchange_list(manipulated_list, index_)
+        index = int(info[1])
+        manipulated_list = exchange_list(manipulated_list, index)
 
     # Check max
     elif action == "max":
@@ -157,19 +157,19 @@ while True:
 
     # First count
     elif action == "first":
-        count_, kind_ = int(info[1]), info[2]
-        if kind_ == "even":
-            print(first_count_even(manipulated_list, count_))
-        elif kind_ == "odd":
-            print(first_count_odd(manipulated_list, count_))
+        count, kind = int(info[1]), info[2]
+        if kind == "even":
+            print(first_count_even(manipulated_list, count))
+        elif kind == "odd":
+            print(first_count_odd(manipulated_list, count))
 
     # Last count
     elif action == "last":
-        count_, kind_ = int(info[1]), info[2]
-        if kind_ == "even":
-            print(last_count_even(manipulated_list, count_))
-        elif kind_ == "odd":
-            print(last_count_odd(manipulated_list, count_))
+        count, kind = int(info[1]), info[2]
+        if kind == "even":
+            print(last_count_even(manipulated_list, count))
+        elif kind == "odd":
+            print(last_count_odd(manipulated_list, count))
 
 
 print(manipulated_list)
