@@ -1,63 +1,121 @@
-def correct_lab_bounds(row, col):
-    if row < 0 or col < 0 or row >= len(lab_list) or col >= len(lab_list[0]):
-        return True
+from collections import deque
+
+EMPTY, WALL = ' ', '#'
+ROWS = int(input())
+matrix = []
+
+for idx in range(ROWS):
+    row = list(input())
+    matrix.append(row)
+    if 'k' in row:
+        pl_row, pl_col = idx, row.index('k')
+
+COLS = len(matrix[0])
+
+moves = {
+    'up': (-1, 0),
+    'down': (1, 0),
+    'left': (0, -1),
+    'right': (0, 1),
+}
 
 
-def check_wall(row, col):
-    if lab_list[row][col] in "#v":
-        return True
+def is_valid_index(value, max_value):
+    return 0 <= value < max_value
 
 
-def find_exit(row, col):
-    if row == 0 or row == len(lab_list) - 1 or col == 0 or col == len(lab_list[0]):
-        return True
+def next_move(pl_row, pl_col, direction):
+    d_row, d_col = moves[direction][0], moves[direction][1]
+    next_row = (pl_row + d_row) if is_valid_index(pl_row + d_row, ROWS) else None
+    next_col = (pl_col + d_col) if is_valid_index(pl_col + d_col, COLS) else None
+    return next_row, next_col
 
 
-def find_starting_point():
-    for pos_row, row in enumerate(lab_list):
-        for pos_col, col in enumerate(row):
-            if col == "k":
-                return pos_row, pos_col
+max_moves = 0
+count_moves = 0
+coordinates = deque([(pl_row, pl_col)])
+exit_found = False
 
+while coordinates:
+    pl_row, pl_col = coordinates.popleft()
+    for direction in moves.keys():
+        next_row, next_col = next_move(pl_row, pl_col, direction)
+        if next_row is None or next_col is None:
+            exit_found = True
 
-def find_the_lab_path(row, col, lab):
-    if correct_lab_bounds(row, col) or check_wall(row, col):
-        return
+        if next_row is not None and next_col is not None and matrix[next_row][next_col] == EMPTY:
+            coordinates.append((next_row, next_col))
+            matrix[next_row][next_col] = 'v'
+            count_moves += 1
 
-    steps.append(1)
+    if count_moves > max_moves:
+        max_moves = count_moves
 
-    if find_exit(row, col):
-        max_len_path.append(sum(steps))
-
-    lab[row][col] = "v"
-    find_the_lab_path(row, col + 1, lab)  # check right
-    find_the_lab_path(row, col - 1, lab)  # check left
-    find_the_lab_path(row + 1, col, lab)  # check up
-    find_the_lab_path(row - 1, col, lab)  # check down
-    lab[row][col] = " "
-
-    steps.pop()
-
-
-rows = int(input())
-lab_list = []
-steps = []
-max_len_path = []
-for curr_lab in range(rows):
-    lab_list.append(list(input()))
-cols = len(lab_list[0])
-start_row, start_col = find_starting_point()
-
-find_the_lab_path(start_row, start_col, lab_list)
-
-if max_len_path:
-    print(f"Kate got out in {max(max_len_path)} moves")
-else:
-    print("Kate cannot get out")
-
+print(f'Kate got out in {max_moves + 1} moves') if exit_found else print('Kate cannot get out')
 
 
 
+#########################################################################################################################
+# def correct_lab_bounds(row, col):
+#     if row < 0 or col < 0 or row >= len(lab_list) or col >= len(lab_list[0]):
+#         return True
+
+
+# def check_wall(row, col):
+#     if lab_list[row][col] in "#v":
+#         return True
+
+
+# def find_exit(row, col):
+#     if row == 0 or row == len(lab_list) - 1 or col == 0 or col == len(lab_list[0]):
+#         return True
+
+
+# def find_starting_point():
+#     for pos_row, row in enumerate(lab_list):
+#         for pos_col, col in enumerate(row):
+#             if col == "k":
+#                 return pos_row, pos_col
+
+
+# def find_the_lab_path(row, col, lab):
+#     if correct_lab_bounds(row, col) or check_wall(row, col):
+#         return
+
+#     steps.append(1)
+
+#     if find_exit(row, col):
+#         max_len_path.append(sum(steps))
+
+#     lab[row][col] = "v"
+#     find_the_lab_path(row, col + 1, lab)  # check right
+#     find_the_lab_path(row, col - 1, lab)  # check left
+#     find_the_lab_path(row + 1, col, lab)  # check up
+#     find_the_lab_path(row - 1, col, lab)  # check down
+#     lab[row][col] = " "
+
+#     steps.pop()
+
+
+# rows = int(input())
+# lab_list = []
+# steps = []
+# max_len_path = []
+# for curr_lab in range(rows):
+#     lab_list.append(list(input()))
+# cols = len(lab_list[0])
+# start_row, start_col = find_starting_point()
+
+# find_the_lab_path(start_row, start_col, lab_list)
+
+# if max_len_path:
+#     print(f"Kate got out in {max(max_len_path)} moves")
+# else:
+#     print("Kate cannot get out")
+
+
+
+#############################################################################################################
 # def find_position(maze):
 #     position = []
 #     for row in range(len(maze)):
